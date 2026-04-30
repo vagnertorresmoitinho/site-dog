@@ -1,0 +1,110 @@
+.receipt-copy-card {
+  display: grid;
+  gap: 20px;
+}
+
+.receipt-copy-header,
+.receipt-copy-search,
+.receipt-copy-company,
+.receipt-copy-result-card,
+.receipt-copy-actions {
+  display: flex;
+  gap: 14px;
+}
+
+.receipt-copy-header {
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.receipt-copy-header h2 {
+  margin: 0 0 6px;
+}
+
+.receipt-copy-header p,
+.receipt-copy-company span {
+  margin: 0;
+  color: var(--muted);
+}
+
+.receipt-copy-company {
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.receipt-copy-search {
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.receipt-copy-search label {
+  flex: 1 1 220px;
+  display: grid;
+  gap: 7px;
+  font-weight: 800;
+}
+
+.receipt-copy-search input {
+  width: 100%;
+  border: 1px solid rgba(123, 76, 53, 0.2);
+  border-radius: 14px;
+  padding: 13px 14px;
+  font: inherit;
+}
+
+.receipt-copy-result-card {
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  padding: 16px;
+  border: 1px solid rgba(123, 76, 53, 0.14);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.76);
+}
+
+.receipt-copy-result-card h3 {
+  margin: 0 0 6px;
+}
+
+.receipt-copy-result-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.receipt-copy-actions a,
+.receipt-copy-actions button {
+  border: 0;
+  border-radius: 12px;
+  padding: 11px 14px;
+  background: #2a180f;
+  color: #fff8f0;
+  font: inherit;
+  font-weight: 900;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.receipt-copy-actions a {
+  background: rgba(42, 24, 15, 0.08);
+  color: #2a180f;
+}
+
+@media (max-width: 720px) {
+  .receipt-copy-company {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .receipt-copy-actions {
+    width: 100%;
+  }
+
+  .receipt-copy-actions a,
+  .receipt-copy-actions button {
+    flex: 1;
+    text-align: center;
+  }
+}

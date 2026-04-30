@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dogtop | Finalizar Pedido</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .online-logo__badge--image { overflow: hidden; background: #fff; padding: 4px; }
+        .online-logo__badge img { width: 100%; height: 100%; object-fit: contain; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col relative">
+
+    <nav class="sticky top-0 z-[60] bg-slate-950 text-white border-b border-slate-800 shadow-sm print:hidden" aria-label="Navegação administrativa">
+        <div class="max-w-6xl mx-auto px-4 h-11 flex items-center gap-3 overflow-x-auto">
+            <a href="./dashboard.html" class="shrink-0 font-black text-brand-500 text-xs uppercase tracking-wider">Dogtop Admin</a>
+            <span class="h-5 w-px bg-slate-700 shrink-0"></span>
+            <a href="./dashboard.html" class="shrink-0 text-xs font-bold text-slate-200 hover:text-brand-400 transition-colors">Painel</a>
+            <a href="./vendas.html" class="shrink-0 text-xs font-bold text-slate-200 hover:text-brand-400 transition-colors">Vendas</a>
+            <a href="./produtos.html" class="shrink-0 text-xs font-bold text-slate-200 hover:text-brand-400 transition-colors">Produtos</a>
+            <a href="./insumos.html" class="shrink-0 text-xs font-bold text-slate-200 hover:text-brand-400 transition-colors">Insumos</a>
+            <a href="./cozinha.html" class="shrink-0 text-xs font-bold text-slate-200 hover:text-brand-400 transition-colors">Cozinha</a>
+            <a href="./pedidos.html" class="ml-auto shrink-0 bg-brand-500 hover:bg-brand-600 text-white px-3 py-1.5 rounded-lg text-xs font-black transition-colors">Voltar ao Sistema</a>
+        </div>
+    </nav>
+
+    <header class="sticky top-11 z-50 bg-white border-b border-slate-200 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            
+            <a href="./pedidos-online.html" data-online-home class="online-logo flex items-center gap-3 hover:opacity-80 transition-opacity" aria-label="Voltar para a tela principal" title="Voltar para a tela principal">
+                <div class="online-logo__badge w-10 h-10 bg-brand-500 text-white rounded-lg flex items-center justify-center font-black text-sm shadow-sm">
+                    DT
+                </div>
+                <div class="hidden sm:block">
+                    <strong class="block text-lg font-black text-slate-800 leading-tight tracking-tight">Dogtop</strong>
+                    <small class="block text-[10px] uppercase font-bold tracking-wider text-brand-600 leading-none">Delivery</small>
+                </div>
+            </a>
+
+            <div class="flex items-center gap-3 text-right">
+                <div class="hidden sm:block">
+                    <span class="block text-xs font-bold text-slate-400 uppercase tracking-wider">Etapa 2 de 3</span>
+                    <strong class="block text-sm font-bold text-slate-800">Pagamento e Entrega</strong>
+                </div>
+                <div class="flex gap-1">
+                    <div class="w-3 h-2 rounded-full bg-slate-200"></div>
+                    <div class="w-8 h-2 rounded-full bg-brand-500"></div>
+                    <div class="w-3 h-2 rounded-full bg-slate-200"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-6xl mx-auto w-full px-4 py-6 md:py-8 flex flex-col gap-8">
+        
+        <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 md:p-8 flex flex-col md:flex-row justify-between items-center gap-6 relative overflow-hidden">
+            <div class="absolute -left-20 -top-20 w-64 h-64 bg-emerald-50 rounded-full opacity-60 blur-3xl pointer-events-none"></div>
+            
+            <div class="text-center md:text-left z-10 flex-1">
+                <span class="inline-block px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider rounded-md mb-3 border border-emerald-100">
+                    Quase lá!
+                </span>
+                <h1 class="text-2xl md:text-3xl font-black text-slate-800 mb-2 tracking-tight">
+                    Confirme seus dados.
+                </h1>
+                <p class="text-sm text-slate-500 max-w-xl mx-auto md:mx-0">
+                    Revise os itens escolhidos, informe o endereço de entrega e a forma de pagamento para finalizarmos seu pedido.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 rounded-xl p-4 border border-slate-100 z-10 flex flex-col items-center justify-center shrink-0 w-full md:w-48">
+                <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1" id="payment-item-count">0 itens</span>
+                <strong class="block text-3xl font-black text-brand-600" id="payment-total-hero">R$ 0,00</strong>
+            </div>
+        </section>
+
+        <div class="flex flex-col lg:flex-row-reverse gap-8 items-start">
+            
+            <aside class="w-full lg:w-96 shrink-0 lg:sticky lg:top-[124px]" aria-label="Resumo do pedido">
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden flex flex-col">
+                    
+                    <div class="px-5 py-4 border-b border-slate-100 bg-slate-50 flex items-center gap-3 shrink-0">
+                        <svg class="w-5 h-5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>
+                        <div>
+                            <h2 class="font-bold text-slate-800 leading-none">Resumo do Pedido</h2>
+                            <p class="text-xs text-slate-500 mt-1">Itens selecionados na etapa anterior.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 space-y-3 border-b border-slate-200 max-h-[40vh] overflow-y-auto" id="payment-items">
+                        </div>
+
+                    <div class="p-5 bg-slate-50 space-y-3 shrink-0">
+                        <div class="flex justify-between items-center text-sm text-slate-600">
+                            <span>Somatória dos itens</span>
+                            <strong id="payment-original-subtotal">R$ 0,00</strong>
+                        </div>
+                        
+                        <div class="hidden justify-between items-center text-sm text-emerald-600 bg-emerald-50 p-2 rounded -mx-2" id="payment-discount-row">
+                            <span>Desconto Aplicado</span>
+                            <strong id="payment-discount">- R$ 0,00</strong>
+                        </div>
+                        
+                        <div class="flex justify-between items-center text-sm font-semibold text-slate-800 pt-2 border-t border-slate-200 mt-2">
+                            <span>Subtotal</span>
+                            <strong id="payment-subtotal">R$ 0,00</strong>
+                        </div>
+                        
+                        <div class="hidden justify-between items-center text-sm text-amber-600 bg-amber-50 p-2 rounded -mx-2" id="payment-delivery-fee-row">
+                            <span>Taxa de entrega</span>
+                            <strong id="payment-delivery-fee">+ R$ 0,00</strong>
+                        </div>
+
+                        <div class="hidden justify-between items-center text-sm text-slate-600 pt-2 border-t border-slate-200" id="payment-change-summary-row">
+                            <span>Troco para</span>
+                            <strong id="payment-change-for">R$ 0,00</strong>
+                        </div>
+
+                        <div class="hidden justify-between items-center text-sm text-emerald-700 bg-emerald-50 p-2 rounded -mx-2" id="payment-change-returned-row">
+                            <span>Troco a devolver</span>
+                            <strong id="payment-change-returned">R$ 0,00</strong>
+                        </div>
+                    </div>
+
+                    <div class="p-5 border-t border-slate-200 bg-slate-800 text-white shrink-0 flex justify-between items-end">
+                        <span class="text-sm font-bold text-slate-300">Total a Pagar</span>
+                        <strong class="text-3xl font-black text-brand-500" id="payment-total">R$ 0,00</strong>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="w-full lg:flex-1">
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    
+                    <div class="px-6 py-5 border-b border-slate-100 bg-slate-50/50">
+                        <h2 class="text-lg font-bold text-slate-800">Dados da Entrega e Pagamento</h2>
+                        <p class="text-sm text-slate-500">Estas informações guiarão o nosso motoboy até você.</p>
+                    </div>
+
+                    <form class="p-6 md:p-8 space-y-8" id="payment-form">
+                        
+                        <div>
+                            <h3 class="text-sm font-bold text-brand-600 uppercase tracking-wider mb-4 border-b border-slate-100 pb-2">1. Sua Identificação</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-1">Seu Nome <span class="text-red-500">*</span></label>
+                                    <input type="text" name="cliente" list="payment-client-list" placeholder="Como devemos te chamar?" required 
+                                        class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white" />
+                                    <datalist id="payment-client-list"></datalist>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-1">Celular / WhatsApp <span class="text-red-500">*</span></label>
+                                    <input type="tel" name="telefone" placeholder="(00) 00000-0000" required 
+                                        class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col gap-2">
+                            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Dados Localizados no Sistema</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
+                                <div class="flex flex-col"><span class="text-xs text-slate-400">Cliente</span> <strong class="text-slate-800 truncate" id="payment-client-summary">Não informado</strong></div>
+                                <div class="flex flex-col"><span class="text-xs text-slate-400">Telefone</span> <strong class="text-slate-800" id="payment-phone-summary">Não informado</strong></div>
+                                <div class="flex flex-col sm:col-span-2"><span class="text-xs text-slate-400">Endereço Principal</span> <strong class="text-slate-800 leading-tight" id="payment-address-summary">Não informado</strong></div>
+                                <div class="flex flex-col sm:col-span-2"><span class="text-xs text-slate-400">Referência</span> <strong class="text-slate-800 italic font-medium text-slate-600" id="payment-reference-summary">Não informado</strong></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-sm font-bold text-brand-600 uppercase tracking-wider mb-4 border-b border-slate-100 pb-2">2. Local de Entrega</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-1">Método de Entrega <span class="text-red-500">*</span></label>
+                                    <select name="tipoEntrega" required class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white cursor-pointer font-semibold text-brand-700">
+                                        <option value="Delivery">Entrega em Casa (Delivery)</option>
+                                        <option value="Retirada">Vou Retirar na Loja</option>
+                                    </select>
+                                </div>
+                                <div class="hidden" id="payment-delivery-fee-field">
+                                    <label class="block text-sm font-semibold text-slate-700 mb-1">Taxa de Entrega</label>
+                                    <input type="text" name="taxaEntrega" value="R$ 0,00" readonly class="w-full px-4 py-3 border border-amber-200 bg-amber-50 text-amber-700 font-bold rounded-lg outline-none text-sm cursor-not-allowed" />
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-5">
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-1">Endereço Completo</label>
+                                    <input type="text" name="enderecoEntrega" placeholder="Rua, número, bairro..." 
+                                        class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white" />
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-1">Ponto de Referência</label>
+                                    <input type="text" name="pontoReferência" placeholder="Ex: Casa verde de portão preto, próximo à praça." 
+                                        class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-sm font-bold text-brand-600 uppercase tracking-wider mb-4 border-b border-slate-100 pb-2">3. Pagamento e Detalhes</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-1">Como você quer pagar? <span class="text-red-500">*</span></label>
+                                    <select name="formaPagamento" required class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white cursor-pointer font-bold text-slate-800">
+                                        <option value="">Selecione a forma de pagamento...</option>
+                                        <option value="Pix">Pix (Chave via WhatsApp)</option>
+                                        <option value="Cartao de credito">Cartão de Crédito (Na maquininha)</option>
+                                        <option value="Cartao de debito">Cartão de Débito (Na maquininha)</option>
+                                        <option value="Dinheiro">Dinheiro Físico</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="hidden" id="payment-change-field">
+                                    <label class="block text-sm font-semibold text-slate-700 mb-1">Precisa de troco para quanto?</label>
+                                    <div class="relative">
+                                        <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-emerald-600 font-bold">R$</span>
+                                        <input type="number" name="trocoPara" min="0" step="0.01" placeholder="50.00" 
+                                            class="w-full pl-10 pr-4 py-3 border border-emerald-300 bg-emerald-50 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none text-sm font-bold text-emerald-800" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-1">Observações do Pedido</label>
+                                <textarea name="observacoes" rows="3" placeholder="Ex: Tirar cebola, adicionar bastante maionese, interfone quebrado..." 
+                                    class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white resize-none"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col-reverse sm:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-200 mt-8">
+                            <a href="./pedidos-online.html" class="w-full sm:w-auto px-6 py-3.5 text-slate-600 bg-white border border-slate-300 hover:bg-slate-50 font-semibold rounded-xl text-center transition-colors text-sm">
+                                Voltar ao Cardápio
+                            </a>
+                            
+                            <div class="w-full sm:w-auto flex flex-col items-center">
+                                <button type="submit" class="w-full sm:w-auto px-10 py-3.5 bg-brand-500 hover:bg-brand-600 active:bg-brand-700 text-white font-black text-lg tracking-wide rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+                                    Concluir e Enviar Pedido
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                                </button>
+                                <p class="text-xs text-red-500 mt-2 font-medium" id="payment-feedback" role="status"></p>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/audit-log.js"></script>
+    <script src="../assets/js/online-home.js"></script>
+    <script src="../assets/js/thermal-print.js"></script>
+    <script src="../assets/js/stock-recipes.js"></script>
+    <script src="../assets/js/pages/pagamento-pedido.js"></script>
+</body>
+</html>

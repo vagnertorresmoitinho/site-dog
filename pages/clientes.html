@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dogtop | Clientes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/pages/clientes.css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="client-page">
+    <aside class="client-sidebar">
+        <a href="./dashboard.html" class="client-sidebar__brand">
+            <span>DT</span>
+            <strong>Dogtop</strong>
+        </a>
+        <nav>
+            <a href="./dashboard.html">Dashboard</a>
+            <a href="./vendas.html">Vendas</a>
+            <a href="./pedidos.html">Pedidos</a>
+            <a href="./produtos.html">Produtos</a>
+            <a href="./insumos.html">Insumos</a>
+            <a href="./clientes.html" class="active">Clientes</a>
+        </nav>
+    </aside>
+
+    <main class="client-main">
+        <header class="client-topbar">
+            <div>
+                <a href="./dashboard.html" class="client-back">‹</a>
+                <div>
+                    <h1>Cadastro cliente</h1>
+                    <p>Ficha completa, contato, entrega, saldo e histórico.</p>
+                </div>
+            </div>
+            <div class="client-user">
+                <span>Ajuda</span>
+                <strong>DOGTOP</strong>
+            </div>
+        </header>
+
+        <section class="client-workspace">
+            <aside class="client-list-card">
+                <div class="client-list-card__header">
+                    <div>
+                        <h2>Clientes</h2>
+                        <p id="client-count">0 cadastrados</p>
+                    </div>
+                    <button type="button" id="client-new">Novo</button>
+                </div>
+                <label class="client-search">
+                    <span>Buscar</span>
+                    <input type="search" id="client-search" placeholder="Nome, telefone ou endereço..." />
+                </label>
+                <div class="client-list" id="client-list"></div>
+            </aside>
+
+            <form class="client-form-grid" id="client-form">
+                <input type="hidden" name="id" />
+
+                <section class="client-card client-profile-card">
+                    <div class="client-avatar" id="client-avatar">DT</div>
+                    <div class="client-field-stack">
+                        <label>
+                            <span>Nome</span>
+                            <input type="text" name="nome" placeholder="Nome" required />
+                        </label>
+                        <label>
+                            <span>CPF/CNPJ</span>
+                            <input type="text" name="cpfCnpj" placeholder="CPF/CNPJ" />
+                        </label>
+                        <label>
+                            <span>Observações</span>
+                            <textarea name="observacoes" placeholder="Observações" rows="3"></textarea>
+                        </label>
+                    </div>
+                </section>
+
+                <section class="client-card">
+                    <h2>Contato</h2>
+                    <div class="client-field-stack">
+                        <label>
+                            <span>E-mail</span>
+                            <input type="email" name="email" placeholder="E-mail" />
+                        </label>
+                        <div class="client-phone-row">
+                            <label class="client-ddi">
+                                <span>DDI</span>
+                                <select name="ddiCelular">
+                                    <option value="+55">🇧🇷 +55</option>
+                                </select>
+                            </label>
+                            <label>
+                                <span>Telefone/Celular</span>
+                                <input type="tel" name="telefoneCelular" placeholder="Telefone/Celular" required />
+                            </label>
+                        </div>
+                        <div class="client-phone-row">
+                            <label class="client-ddi">
+                                <span>DDI</span>
+                                <select name="ddiTelefone">
+                                    <option value="+55">🇧🇷 +55</option>
+                                </select>
+                            </label>
+                            <label>
+                                <span>Telefone</span>
+                                <input type="tel" name="telefone" placeholder="Telefone" />
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="client-card">
+                    <h2>Endereço</h2>
+                    <div class="client-field-stack">
+                        <label>
+                            <span>Endereço</span>
+                            <input type="text" name="endereco" placeholder="Endereço" />
+                        </label>
+                        <div class="client-address-row">
+                            <label>
+                                <span>Número</span>
+                                <input type="text" name="numero" placeholder="Número" />
+                            </label>
+                            <label>
+                                <span>Bairro</span>
+                                <input type="text" name="bairro" placeholder="Bairro" list="client-neighborhoods" />
+                                <datalist id="client-neighborhoods">
+                                    <option value="Centro"></option>
+                                    <option value="Jardim Sapezal"></option>
+                                    <option value="Cidezal"></option>
+                                    <option value="Água Clara"></option>
+                                </datalist>
+                            </label>
+                        </div>
+                        <label>
+                            <span>CEP</span>
+                            <input type="text" name="cep" placeholder="00000-000" inputmode="numeric" maxlength="9" />
+                        </label>
+                        <label>
+                            <span>Complemento</span>
+                            <input type="text" name="complemento" placeholder="Complemento" />
+                        </label>
+                        <label>
+                            <span>Ponto de referência</span>
+                            <input type="text" name="pontoReferencia" placeholder="Ex: casa verde, portão preto..." />
+                        </label>
+                        <button type="button" id="client-open-map" class="client-map-button">
+                            Abrir localização no Google Maps
+                        </button>
+                    </div>
+                </section>
+
+                <section class="client-card client-account-card">
+                    <h2>Conta</h2>
+                    <div class="client-balance">
+                        <span>Saldo atual</span>
+                        <strong id="client-balance">R$ 0,00</strong>
+                    </div>
+                    <div class="client-balance-actions">
+                        <button type="button" id="client-balance-add">↑ adicionar</button>
+                        <button type="button" id="client-balance-subtract">↓ Subtrair</button>
+                    </div>
+                </section>
+
+                <section class="client-card client-orders-card">
+                    <div class="client-orders-empty" id="client-orders-empty">
+                        <div class="client-basket">0</div>
+                        <strong>Este cliente ainda não fez pedidos.</strong>
+                        <button type="button" id="client-new-order">Novo pedido</button>
+                    </div>
+                    <div class="client-orders-list hidden" id="client-orders-list"></div>
+                </section>
+
+                <footer class="client-actions">
+                    <button type="button" id="client-delete" class="danger">Excluir cadastro</button>
+                    <div>
+                        <button type="button" id="client-clear">Limpar</button>
+                        <button type="submit">Salvar cliente</button>
+                    </div>
+                </footer>
+            </form>
+        </section>
+    </main>
+
+    <script src="../assets/js/audit-log.js"></script>
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/painel-vendas.js"></script>
+    <script src="../assets/js/pages/clientes.js"></script>
+</body>
+</html>

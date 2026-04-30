@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dogtop | Fazer Pedido Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        
+        /* Oculta scrollbar mas mantém a rolagem (útil para menu de categorias) */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+    <link rel="stylesheet" href="../assets/css/pages/pedidos-online.css" />
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col relative">
+
+    <nav class="sticky top-0 z-[60] bg-slate-950 text-white border-b border-slate-800 shadow-sm print:hidden" aria-label="Navegação administrativa">
+        <div class="max-w-6xl mx-auto px-4 h-11 flex items-center gap-3 overflow-x-auto hide-scrollbar">
+            <a href="./dashboard.html" class="shrink-0 font-black text-brand-500 text-xs uppercase tracking-wider">Dogtop Admin</a>
+            <span class="h-5 w-px bg-slate-700 shrink-0"></span>
+            <a href="./dashboard.html" class="shrink-0 text-xs font-bold text-slate-200 hover:text-brand-400 transition-colors">Painel</a>
+            <a href="./vendas.html" class="shrink-0 text-xs font-bold text-slate-200 hover:text-brand-400 transition-colors">Vendas</a>
+            <a href="./produtos.html" class="shrink-0 text-xs font-bold text-slate-200 hover:text-brand-400 transition-colors">Produtos</a>
+            <a href="./insumos.html" class="shrink-0 text-xs font-bold text-slate-200 hover:text-brand-400 transition-colors">Insumos</a>
+            <a href="./cozinha.html" class="shrink-0 text-xs font-bold text-slate-200 hover:text-brand-400 transition-colors">Cozinha</a>
+            <a href="./pedidos.html" class="ml-auto shrink-0 bg-brand-500 hover:bg-brand-600 text-white px-3 py-1.5 rounded-lg text-xs font-black transition-colors">Voltar ao Sistema</a>
+        </div>
+    </nav>
+
+    <header class="sticky top-11 z-50 bg-white border-b border-slate-200 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            
+            <a href="./pedidos-online.html" data-online-home class="online-logo flex items-center gap-3 hover:opacity-80 transition-opacity" aria-label="Voltar para a tela principal" title="Voltar para a tela principal">
+                <div class="online-logo__badge w-10 h-10 bg-brand-500 text-white rounded-lg flex items-center justify-center font-black text-sm shadow-sm">
+                    DT
+                </div>
+                <div class="hidden sm:block">
+                    <strong class="block text-lg font-black text-slate-800 leading-tight tracking-tight">Dogtop</strong>
+                    <small class="block text-[10px] uppercase font-bold tracking-wider text-brand-600 leading-none">Delivery</small>
+                </div>
+            </a>
+
+            <div class="flex items-center gap-3 text-right">
+                <div class="hidden sm:block">
+                    <span class="block text-xs font-bold text-slate-400 uppercase tracking-wider">Etapa 1 de 3</span>
+                    <strong class="block text-sm font-bold text-slate-800">Seu Pedido</strong>
+                </div>
+                <div class="flex gap-1">
+                    <div class="w-8 h-2 rounded-full bg-brand-500"></div>
+                    <div class="w-3 h-2 rounded-full bg-slate-200"></div>
+                    <div class="w-3 h-2 rounded-full bg-slate-200"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-6xl mx-auto w-full px-4 py-6 md:py-8 flex flex-col lg:flex-row gap-8 items-start">
+        
+        <div class="w-full lg:flex-1 space-y-8">
+            
+            <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center relative overflow-hidden">
+                <div class="absolute -right-20 -top-20 w-64 h-64 bg-brand-50 rounded-full opacity-60 blur-3xl pointer-events-none"></div>
+                
+                <div class="flex-1 text-center md:text-left z-10">
+                    <span class="inline-block px-3 py-1 bg-brand-50 text-brand-700 text-xs font-bold uppercase tracking-wider rounded-md mb-3">
+                        Cardápio Aberto
+                    </span>
+                    <h1 class="text-2xl md:text-3xl font-black text-slate-800 mb-2 tracking-tight">
+                        Monte seu pedido.
+                    </h1>
+                    <p class="text-sm text-slate-500">
+                        Escolha seus produtos favoritos abaixo. Adicione ao carrinho e finalize de forma rápida e segura.
+                    </p>
+                </div>
+
+                <div class="w-full md:w-64 shrink-0 bg-slate-50 rounded-xl p-4 border border-slate-100 z-10" id="online-feature-carousel">
+                    <div class="text-center" id="online-feature-slides">
+                        <div class="py-4">
+                            <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1" id="online-product-count">0 produtos</span>
+                            <strong class="block text-lg font-bold text-brand-600" id="online-cart-count">0 itens no pedido</strong>
+                        </div>
+                    </div>
+                    <div class="hidden flex-col items-center gap-2 mt-2 pt-2 border-t border-slate-200">
+                        <div class="text-center text-xs text-slate-500">
+                            <span id="online-feature-product-count">0 produtos</span> | 
+                            <strong id="online-feature-cart-count">0 itens</strong>
+                        </div>
+                        <div class="flex gap-1" id="online-feature-dots" role="group" aria-label="Destaques"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="space-y-6">
+                
+                <nav class="flex gap-2 overflow-x-auto hide-scrollbar pb-2 sticky top-[108px] bg-slate-50 pt-2 z-40" id="online-category-tabs" aria-label="Categorias">
+                    <button type="button" class="px-5 py-2.5 rounded-full bg-brand-500 text-white font-bold text-sm shrink-0 shadow-sm transition-transform active:scale-95">Lanches</button>
+                    <button type="button" class="px-5 py-2.5 rounded-full bg-white border border-slate-200 text-slate-600 font-semibold text-sm hover:bg-slate-50 shrink-0 transition-colors">Bebidas</button>
+                    <button type="button" class="px-5 py-2.5 rounded-full bg-white border border-slate-200 text-slate-600 font-semibold text-sm hover:bg-slate-50 shrink-0 transition-colors">Sobremesas</button>
+                    <button type="button" class="px-5 py-2.5 rounded-full bg-white border border-slate-200 text-slate-600 font-semibold text-sm hover:bg-slate-50 shrink-0 transition-colors">Combos</button>
+                </nav>
+
+                <div class="space-y-8" id="online-category-list">
+                    
+                    <div>
+                        <h2 class="text-xl font-black text-slate-800 mb-4 tracking-tight">Lanches</h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            
+                            <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm hover:shadow-md transition-shadow flex gap-4 cursor-pointer group">
+                                <div class="flex-1 flex flex-col justify-between min-w-0">
+                                    <div>
+                                        <h3 class="font-bold text-slate-800 text-sm md:text-base leading-tight mb-1 group-hover:text-brand-600 transition-colors">Dogão Tradicional</h3>
+                                        <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed">Pão artesanal, 2 salsichas, purê de batata caseiro, batata palha, milho, queijo ralado e molhos especiais.</p>
+                                    </div>
+                                    <div class="mt-3 flex items-center justify-between">
+                                        <strong class="text-base font-black text-slate-800">R$ 21,00</strong>
+                                        <button type="button" class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center group-hover:bg-brand-500 group-hover:text-white transition-colors" aria-label="Adicionar">
+                                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-lg bg-slate-100 shrink-0 border border-slate-200 overflow-hidden relative">
+                                    <div class="absolute inset-0 flex items-center justify-center text-slate-300">
+                                        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm hover:shadow-md transition-shadow flex gap-4 cursor-pointer group">
+                                <div class="flex-1 flex flex-col justify-between min-w-0">
+                                    <div>
+                                        <h3 class="font-bold text-slate-800 text-sm md:text-base leading-tight mb-1 group-hover:text-brand-600 transition-colors">Dogão Bacon Duplo</h3>
+                                        <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed">Dobro de bacon crocante, salsicha perdigão, purê cremoso e cheddar derretido.</p>
+                                    </div>
+                                    <div class="mt-3 flex items-center justify-between">
+                                        <div class="flex flex-col">
+                                            <span class="text-[10px] text-slate-400 line-through leading-none">R$ 32,00</span>
+                                            <strong class="text-base font-black text-brand-600">R$ 28,50</strong>
+                                        </div>
+                                        <button type="button" class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center group-hover:bg-brand-500 group-hover:text-white transition-colors" aria-label="Adicionar">
+                                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-lg bg-slate-100 shrink-0 border border-slate-200 overflow-hidden relative">
+                                    <div class="absolute top-0 right-0 bg-brand-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-bl-lg z-10">
+                                        OFERTA
+                                    </div>
+                                    <div class="absolute inset-0 flex items-center justify-center text-slate-300">
+                                        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="hidden flex-col items-center justify-center p-12 text-center bg-white rounded-xl border border-slate-200" id="online-empty">
+                    <svg class="w-12 h-12 text-slate-300 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
+                    <p class="text-sm font-semibold text-slate-600">Cardápio indisponível no momento.</p>
+                </div>
+            </section>
+
+        </div>
+
+        <aside class="w-full lg:w-96 shrink-0 lg:sticky lg:top-24" aria-label="Resumo do pedido">
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden flex flex-col max-h-[calc(100vh-120px)]">
+                
+                <div class="px-5 py-4 border-b border-slate-100 bg-slate-50 flex items-center gap-3 shrink-0">
+                    <svg class="w-5 h-5 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+                    <div>
+                        <h2 class="font-bold text-slate-800 leading-none">Seu Pedido</h2>
+                        <p class="text-xs text-slate-500 mt-1">Revise os itens para finalizar.</p>
+                    </div>
+                </div>
+
+                <div class="flex-1 overflow-y-auto p-4 space-y-4" id="online-cart-items">
+                    
+                    <div class="text-center py-8 text-slate-400 flex flex-col items-center">
+                        <svg class="w-10 h-10 mb-2 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                        <p class="text-sm font-medium">Seu carrinho está vazio.</p>
+                    </div>
+
+                    </div>
+
+                <div class="p-5 border-t border-slate-200 bg-white shrink-0">
+                    
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-sm font-semibold text-slate-500">Subtotal</span>
+                        <strong class="text-sm font-bold text-slate-800" id="online-cart-subtotal">R$ 0,00</strong>
+                    </div>
+
+                    <div class="flex justify-between items-end mb-5">
+                        <span class="text-base font-bold text-slate-800">Total</span>
+                        <strong class="text-2xl font-black text-brand-600" id="online-cart-total">R$ 0,00</strong>
+                    </div>
+
+                    <button class="w-full py-3.5 bg-brand-500 hover:bg-brand-600 active:bg-brand-700 text-white font-bold text-base rounded-xl shadow-md transition-all flex items-center justify-center gap-2" type="button" id="online-go-payment">
+                        Avançar Pagamento
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                    </button>
+                    
+                    <p class="text-center text-xs text-red-500 mt-2 h-4 font-medium" id="online-feedback" role="status"></p>
+                </div>
+            </div>
+        </aside>
+
+    </main>
+
+    <div class="fixed inset-0 z-[80] hidden items-end sm:items-center justify-center bg-slate-900/60 p-0 sm:p-4" id="online-customize-modal" aria-hidden="true">
+        <div class="w-full max-w-lg bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl max-h-[92vh] flex flex-col overflow-hidden" role="dialog" aria-modal="true" aria-labelledby="online-customize-title">
+            <div class="px-5 py-4 border-b border-slate-200 flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-xs font-black uppercase tracking-wider text-brand-600">Personalizar item</p>
+                    <h2 class="text-lg font-black text-slate-900 leading-tight" id="online-customize-title">Produto</h2>
+                    <p class="text-sm text-slate-500 mt-1" id="online-customize-price">R$ 0,00</p>
+                </div>
+                <button type="button" class="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-black" data-close-customize-modal aria-label="Fechar">×</button>
+            </div>
+            <div class="p-5 overflow-y-auto">
+                <div class="mb-5">
+                    <label class="block text-sm font-black text-slate-700 mb-2">Quantidade</label>
+                    <div class="inline-flex items-center rounded-xl border border-slate-200 overflow-hidden">
+                        <button type="button" class="w-12 h-11 bg-slate-50 text-xl font-black" id="online-customize-decrease">-</button>
+                        <strong class="w-14 text-center text-lg" id="online-customize-quantity">1</strong>
+                        <button type="button" class="w-12 h-11 bg-slate-50 text-xl font-black" id="online-customize-increase">+</button>
+                    </div>
+                </div>
+
+                <div id="online-customize-additional-section">
+                    <div class="flex items-center justify-between gap-3 mb-3">
+                        <h3 class="text-sm font-black text-slate-800">Adicionais</h3>
+                        <span class="text-xs font-bold text-slate-400">Opcional</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="online-customize-additionals"></div>
+                </div>
+
+                <div class="mt-5">
+                    <label class="block text-sm font-black text-slate-700 mb-2" for="online-customize-note">Alguma alteração?</label>
+                    <textarea id="online-customize-note" rows="3" class="w-full px-3 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 outline-none text-sm resize-none" placeholder="Ex: sem cebola, sem milho, caprichar na batata..."></textarea>
+                    <p class="text-xs text-slate-500 mt-1">Use para remover ingredientes ou mandar observações para a cozinha.</p>
+                </div>
+            </div>
+            <div class="p-5 border-t border-slate-200 bg-white">
+                <button type="button" class="w-full h-12 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-black" id="online-customize-confirm">
+                    Adicionar ao pedido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/audit-log.js"></script>
+    <script src="../assets/js/online-home.js"></script>
+    <script src="../assets/js/pages/pedidos-online.js"></script>
+</body>
+</html>

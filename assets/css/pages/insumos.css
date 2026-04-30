@@ -1,0 +1,317 @@
+body[data-page="insumos"] {
+}
+
+.input-stat {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 88px;
+  padding: 18px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+}
+
+.input-stat__icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  font-weight: 900;
+}
+
+.input-stat p {
+  color: #64748b;
+  font-size: 0.82rem;
+}
+
+.input-stat strong {
+  color: #0f172a;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.input-table {
+  width: 100%;
+  min-width: 920px;
+  border-collapse: collapse;
+}
+
+.input-table th,
+.input-table td {
+  padding: 16px;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.input-table th {
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.input-name {
+  display: grid;
+  gap: 3px;
+}
+
+.input-name strong {
+  color: #0f172a;
+}
+
+.input-name small {
+  color: #64748b;
+  font-size: 0.78rem;
+}
+
+.input-stock {
+  font-weight: 900;
+}
+
+.input-progress {
+  width: 190px;
+}
+
+.input-progress__bar {
+  height: 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e2e8f0;
+}
+
+.input-progress__bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #16a34a;
+}
+
+.input-progress.low .input-progress__bar span {
+  background: #f59e0b;
+}
+
+.input-progress.zero .input-progress__bar span {
+  background: #ef4444;
+}
+
+.input-progress small {
+  display: block;
+  margin-top: 4px;
+  color: #64748b;
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.input-status {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.input-status.normal {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.input-status.low {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.input-status.zero {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.input-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.input-actions button {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #fff;
+  color: #0f172a;
+  font-weight: 900;
+}
+
+.input-actions button[data-action="in"] {
+  color: #15803d;
+}
+
+.input-actions button[data-action="out"] {
+  color: #dc2626;
+}
+
+.input-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+.input-modal.hidden {
+  display: none;
+}
+
+.input-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.58);
+  backdrop-filter: blur(3px);
+}
+
+.input-modal__panel {
+  position: relative;
+  width: min(520px, 100%);
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.2);
+}
+
+.input-modal__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.input-modal__header h2 {
+  color: #0f172a;
+  font-size: 1.15rem;
+  font-weight: 900;
+}
+
+.input-modal__header p,
+.input-modal label span {
+  color: #64748b;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.input-modal__header button {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 999px;
+  background: #e2e8f0;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.input-modal label {
+  display: grid;
+  gap: 6px;
+}
+
+.input-modal input,
+.input-modal select {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 10px 12px;
+  outline: none;
+}
+
+.input-modal input:focus,
+.input-modal select:focus {
+  border-color: #f97316;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.14);
+}
+
+.input-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 6px;
+}
+
+.input-modal__actions button {
+  min-height: 42px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0 16px;
+  background: #fff;
+  font-weight: 900;
+}
+
+.input-modal__actions button[type="submit"] {
+  border-color: #f97316;
+  background: #f97316;
+  color: #fff;
+}
+
+.recipe-product-select,
+.recipe-field {
+  display: grid;
+  gap: 6px;
+}
+
+.recipe-product-select span,
+.recipe-field span {
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.recipe-product-select select,
+.recipe-field select,
+.recipe-field input {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 9px 12px;
+  background: #fff;
+  outline: none;
+}
+
+.recipe-product-select {
+  width: min(360px, 100%);
+}
+
+#recipe-add {
+  min-height: 42px;
+  border: 0;
+  border-radius: 10px;
+  padding: 0 16px;
+  background: #0f172a;
+  color: #fff;
+  font-weight: 900;
+}
+
+.recipe-table {
+  min-width: 720px;
+}
+
+.recipe-table button {
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  background: #fff;
+  color: #dc2626;
+  padding: 7px 10px;
+  font-weight: 900;
+}
+
+@media (max-width: 720px) {
+  .input-table {
+    min-width: 780px;
+  }
+}

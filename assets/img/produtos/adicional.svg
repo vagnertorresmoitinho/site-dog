@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="Adicional ilustrativo">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff7e8"/>
+      <stop offset="1" stop-color="#eac08a"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="600" fill="url(#bg)"/>
+  <ellipse cx="450" cy="448" rx="245" ry="42" fill="#7b3a17" opacity=".16"/>
+  <rect x="280" y="160" width="340" height="280" rx="42" fill="#fffaf0" stroke="#d59a57" stroke-width="12"/>
+  <circle cx="385" cy="280" r="52" fill="#f1c232"/>
+  <circle cx="486" cy="250" r="42" fill="#5aa848"/>
+  <circle cx="506" cy="335" r="54" fill="#f7df9b"/>
+  <path d="M348 370h210" stroke="#c65424" stroke-width="28" stroke-linecap="round"/>
+  <path d="M335 214h230" stroke="#ffe1a4" stroke-width="18" stroke-linecap="round"/>
+  <text x="450" y="530" text-anchor="middle" fill="#32160d" font-family="Arial, sans-serif" font-size="42" font-weight="800">ADICIONAL</text>
+</svg>

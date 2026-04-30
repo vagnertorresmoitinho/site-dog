@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dogtop | Usuários</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased h-screen flex overflow-hidden">
+
+    <aside class="w-64 bg-white border-r border-slate-200 flex flex-col h-full flex-shrink-0" id="sidebar">
+        <div class="h-16 flex items-center px-6 border-b border-slate-200">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-brand-500 text-white rounded-md flex items-center justify-center font-bold text-sm">
+                    DT
+                </div>
+                <div>
+                    <h1 class="font-bold text-sm leading-tight text-slate-900">Dogtop</h1>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Delivery & Retirada</p>
+                </div>
+            </div>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto no-scrollbar py-4 px-3 space-y-1">
+            <p class="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 mt-4">Navegação</p>
+            
+            <a href="./dashboard.html" class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-md font-medium text-sm transition-colors">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7" /></svg>
+                Dashboard
+            </a>
+
+            <a href="./vendas.html" class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-md font-medium text-sm transition-colors">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                Vendas
+            </a>
+
+            <p class="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 mt-6">Administração</p>
+
+            <div class="space-y-1">
+                <div class="flex items-center justify-between px-3 py-2 text-slate-900 bg-slate-50 rounded-md font-medium text-sm">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                        Cadastros
+                    </div>
+                    <svg class="w-4 h-4 text-slate-500 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                </div>
+                
+                <div class="pl-11 pr-3 py-1 space-y-1">
+                    <a href="./produtos.html" class="block py-1.5 text-sm text-slate-500 hover:text-slate-900 transition-colors">Produtos</a>
+                    <a href="./clientes.html" class="block py-1.5 text-sm text-slate-500 hover:text-slate-900 transition-colors">Clientes</a>
+                    <a href="./usuarios.html" class="block py-1.5 text-sm font-semibold text-brand-600 transition-colors">Usuários</a>
+                    <a href="./entregadores.html" class="block py-1.5 text-sm text-slate-500 hover:text-slate-900 transition-colors">Entregadores</a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col h-full overflow-hidden relative bg-slate-50">
+        
+        <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 flex-shrink-0">
+            <div>
+                <h1 id="page-title" class="text-xl font-bold text-slate-800">Usuários</h1>
+                <p id="page-subtitle" class="text-xs text-slate-500 hidden md:block">Gestão de acessos, papéis e permissões administrativas.</p>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <button type="button" id="user-export" class="hidden sm:block px-4 py-2 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-sm font-semibold rounded-md shadow-sm transition-colors">
+                    Exportar
+                </button>
+                <div class="w-px h-6 bg-slate-200 mx-2 hidden sm:block"></div>
+                <div class="flex items-center gap-3">
+                    <div class="text-right hidden md:block">
+                        <p class="text-sm font-semibold text-slate-800 leading-none">Ana Martins</p>
+                        <p class="text-xs text-slate-500 mt-1">Gestora</p>
+                    </div>
+                    <div class="w-9 h-9 rounded-full bg-slate-200 border border-slate-300 flex items-center justify-center font-bold text-slate-600 text-sm">
+                        AM
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="flex-1 overflow-y-auto p-4 lg:p-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                
+                <div class="lg:col-span-2 bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 bg-slate-50/50">
+                        <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" /></svg>
+                            Cadastrar Novo Usuário
+                        </h2>
+                        <p class="text-sm text-slate-500 mt-1">Preencha os dados abaixo para liberar o acesso ao painel.</p>
+                    </div>
+
+                    <div class="p-6">
+                        <form id="user-registration-form" novalidate class="space-y-6">
+                            
+                            <div>
+                                <label for="user-name" class="block text-sm font-semibold text-slate-700 mb-1">Nome completo</label>
+                                <input type="text" id="user-name" name="nome" required 
+                                    class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm text-slate-800" placeholder="Ex: João da Silva">
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="user-email" class="block text-sm font-semibold text-slate-700 mb-1">Email de acesso</label>
+                                    <input type="email" id="user-email" name="email" required 
+                                        class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm text-slate-800" placeholder="joao@dogtop.com.br">
+                                </div>
+                                <div>
+                                    <label for="user-role" class="block text-sm font-semibold text-slate-700 mb-1">Perfil de Permissão</label>
+                                    <select id="user-role" name="perfil" required 
+                                        class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm text-slate-800 bg-white">
+                                        <option value="">Selecione um perfil...</option>
+                                        <option value="Administrador">Administrador</option>
+                                        <option value="Financeiro">Financeiro</option>
+                                        <option value="Vendas">Vendas</option>
+                                        <option value="Operacional">Operacional</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 bg-slate-50 border border-slate-100 rounded-lg">
+                                <div>
+                                    <label for="user-password" class="block text-sm font-semibold text-slate-700 mb-1">Senha temporária</label>
+                                    <input type="password" id="user-password" name="senha" minlength="6" required 
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm text-slate-800">
+                                </div>
+                                <div>
+                                    <label for="user-password-confirm" class="block text-sm font-semibold text-slate-700 mb-1">Confirmar senha</label>
+                                    <input type="password" id="user-password-confirm" name="confirmarSenha" minlength="6" required 
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm text-slate-800">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="user-department" class="block text-sm font-semibold text-slate-700 mb-1">Setor / Unidade</label>
+                                    <input type="text" id="user-department" name="setor" required 
+                                        class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm text-slate-800" placeholder="Ex: Loja Centro">
+                                </div>
+                                <div>
+                                    <label for="user-status" class="block text-sm font-semibold text-slate-700 mb-1">Status da Conta</label>
+                                    <select id="user-status" name="status" required 
+                                        class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm text-slate-800 bg-white">
+                                        <option value="Ativo" selected>Ativo (Acesso Liberado)</option>
+                                        <option value="Pendente">Pendente</option>
+                                        <option value="Bloqueado">Bloqueado</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <hr class="border-slate-200">
+
+                            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                                <div class="flex items-start gap-3">
+                                    <input type="checkbox" id="user-policy" name="aceite" required 
+                                        class="mt-1 w-4 h-4 text-brand-500 border-slate-300 rounded focus:ring-brand-500 cursor-pointer">
+                                    <label for="user-policy" class="text-sm text-slate-600 cursor-pointer">
+                                        Confirmo a responsabilidade pela criação deste <br class="hidden sm:block">acesso no sistema da Dogtop.
+                                    </label>
+                                </div>
+                                
+                                <button type="submit" class="w-full sm:w-auto px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-lg shadow-sm transition-colors flex justify-center items-center gap-2">
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                                    Registrar Usuário
+                                </button>
+                            </div>
+
+                            <p class="text-sm font-medium text-center hidden" id="user-feedback" aria-live="polite"></p>
+
+                        </form>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col h-full max-h-[800px]">
+                    <div class="p-5 border-b border-slate-200 bg-slate-50/50">
+                        <h3 class="font-bold text-slate-800">Usuários Cadastrados</h3>
+                        <p class="text-xs text-slate-500 mt-1" id="user-count">0 usuários persistidos.</p>
+                    </div>
+
+                    <div class="flex-1 overflow-y-auto p-4 space-y-3" id="user-records">
+                        
+                        <div class="text-center text-slate-400 py-10" id="user-empty-state">
+                            <svg class="w-12 h-12 mx-auto mb-3 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                            <p class="text-sm font-medium">Nenhum registro recente.</p>
+                        </div>
+
+                        </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/audit-log.js"></script>
+    <script src="../assets/js/painel-vendas.js"></script>
+    <script src="../assets/js/pages/usuarios.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+/* Estilos especificos da tela promocoes. */
+body[data-page="promocoes"] {
+}
+
+.promotions-table-card {
+  margin-top: 18px;
+}
+
+.promotions-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 18px;
+}
+
+.promotions-table td {
+  vertical-align: middle;
+}
+
+.promotion-product {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 220px;
+}
+
+.promotion-thumb {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 42px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--gradient-soft);
+  color: #a6320a;
+  font-weight: 900;
+}
+
+.promotion-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.promotion-name {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.promotion-name strong,
+.promotion-name small {
+  display: block;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.promotion-name small {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.promotion-original-price {
+  color: var(--muted);
+  font-weight: 800;
+  text-decoration: line-through;
+}
+
+.promotion-price {
+  color: #0f7b34;
+  font-weight: 900;
+}
+
+.promotion-discount {
+  color: #8a3100;
+  font-weight: 900;
+}
+
+@media (max-width: 640px) {
+  .promotions-toolbar .client-search-box {
+    width: 100%;
+    max-width: none;
+  }
+}

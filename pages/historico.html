@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dogtop | Histórico de Vendas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+    <link rel="stylesheet" href="../assets/css/pages/historico.css" />
+</head>
+<body class="text-slate-800 antialiased h-screen flex overflow-hidden">
+
+    <aside class="w-64 bg-white border-r border-slate-200 flex flex-col h-full flex-shrink-0" id="sidebar">
+        <div class="h-16 flex items-center px-6 border-b border-slate-200">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-brand-500 text-white rounded-md flex items-center justify-center font-bold text-sm">
+                    DT
+                </div>
+                <div>
+                    <h1 class="font-bold text-sm leading-tight text-slate-900">Dogtop</h1>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Delivery & Retirada</p>
+                </div>
+            </div>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto no-scrollbar py-4 px-3 space-y-1">
+            <p class="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 mt-4">Navegação</p>
+            
+            <a href="./dashboard.html" class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-md font-medium text-sm transition-colors">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7" /></svg>
+                Dashboard
+            </a>
+
+            <a href="./vendas.html" class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-md font-medium text-sm transition-colors">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                Vendas
+            </a>
+
+            <a href="./pedidos.html" class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-md font-medium text-sm transition-colors">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+                Pedidos
+            </a>
+            
+            <a href="./historico.html" class="flex items-center gap-3 px-3 py-2 bg-brand-50 text-brand-600 rounded-md font-medium text-sm transition-colors" aria-current="page">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                Histórico
+            </a>
+
+            <p class="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 mt-6">Administração</p>
+
+            <a href="#" class="flex items-center justify-between px-3 py-2 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-md font-medium text-sm transition-colors">
+                <div class="flex items-center gap-3">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                    Cadastros
+                </div>
+                <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col h-full overflow-hidden relative bg-slate-50">
+        
+        <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 flex-shrink-0">
+            <div>
+                <h1 id="page-title" class="text-xl font-bold text-slate-800">Histórico de Vendas</h1>
+                <p id="page-subtitle" class="text-xs text-slate-500 hidden md:block">Linha do tempo completa e auditoria da operação.</p>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <div class="w-px h-6 bg-slate-200 mx-2 hidden sm:block"></div>
+                <div class="flex items-center gap-3">
+                    <div class="text-right hidden md:block">
+                        <p class="text-sm font-semibold text-slate-800 leading-none">Ana Martins</p>
+                        <p class="text-xs text-slate-500 mt-1">Gestora</p>
+                    </div>
+                    <div class="w-9 h-9 rounded-full bg-slate-200 border border-slate-300 flex items-center justify-center font-bold text-slate-600 text-sm">
+                        AM
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="flex-1 overflow-y-auto p-4 lg:p-8">
+            <div class="max-w-7xl mx-auto space-y-6">
+                
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col lg:flex-row gap-4 items-end justify-between">
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto flex-1">
+                        <div class="w-full sm:w-96">
+                            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Pesquisar</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <svg class="w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                                </div>
+                                <input type="search" id="history-search" placeholder="Cliente, pedido ou produto..." 
+                                    class="w-full pl-10 pr-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm bg-slate-50 focus:bg-white transition-colors" autocomplete="off" />
+                            </div>
+                        </div>
+
+                        <div class="w-full sm:w-48">
+                            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Status</label>
+                            <select id="history-status" class="w-full py-2.5 px-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm bg-white cursor-pointer">
+                                <option value="todos">Todos os status</option>
+                                <option value="recebido">Recebido</option>
+                                <option value="preparo">Em preparo</option>
+                                <option value="saiu_entrega">Saiu para entrega</option>
+                                <option value="concluido">Concluído</option>
+                                <option value="cancelado">Cancelado</option>
+                            </select>
+                        </div>
+
+                        <div class="w-full sm:w-48">
+                            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Período</label>
+                            <select id="history-period" class="w-full py-2.5 px-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm bg-white cursor-pointer">
+                                <option value="hoje">Hoje</option>
+                                <option value="7">Últimos 7 dias</option>
+                                <option value="30">Últimos 30 dias</option>
+                                <option value="todos">Todo período</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="button" id="history-export" class="w-full lg:w-auto px-4 py-2.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2 text-sm">
+                        <svg class="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                        Exportar CSV
+                    </button>
+
+                </div>
+
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4" aria-label="Resumo do historico">
+                    
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                        <span class="block text-sm font-medium text-slate-500 mb-1">Total Vendido</span>
+                        <strong class="block text-2xl font-bold text-slate-800" id="history-total-sales">R$ 0,00</strong>
+                    </div>
+                    
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                        <span class="block text-sm font-medium text-slate-500 mb-1">Pedidos</span>
+                        <strong class="block text-2xl font-bold text-slate-800" id="history-total-orders">0</strong>
+                    </div>
+                    
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                        <span class="block text-sm font-medium text-slate-500 mb-1">Ticket Médio</span>
+                        <strong class="block text-2xl font-bold text-slate-800" id="history-average-ticket">R$ 0,00</strong>
+                    </div>
+                    
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                        <span class="block text-sm font-medium text-slate-500 mb-1">Descontos Aplicados</span>
+                        <strong class="block text-2xl font-bold text-slate-800" id="history-total-discount">R$ 0,00</strong>
+                    </div>
+
+                </div>
+
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden history-card">
+                    <div class="overflow-x-auto history-table-wrap">
+                        <table class="w-full text-left border-collapse min-w-[800px] history-table">
+                            <thead>
+                                <tr class="bg-slate-50 border-b border-slate-200 text-xs uppercase tracking-wider text-slate-500 font-semibold">
+                                    <th class="px-6 py-4" scope="col">Pedido / Cliente</th>
+                                    <th class="px-6 py-4" scope="col">Itens e Entrega</th>
+                                    <th class="px-6 py-4" scope="col">Pagamento</th>
+                                    <th class="px-6 py-4" scope="col">Status</th>
+                                    <th class="px-6 py-4 text-right" scope="col">Total</th>
+                                    <th class="px-6 py-4 text-right" scope="col">Ações</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody class="divide-y divide-slate-100" id="history-table-body">
+                                
+                                <tr class="hover:bg-slate-50 transition-colors group">
+                                    <td class="px-6 py-4">
+                                        <span class="font-bold text-slate-800">#10542</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="text-sm text-slate-800">10/04/26</div>
+                                        <div class="text-xs text-slate-500">09:26</div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="text-sm font-medium text-slate-800 truncate max-w-[200px]">Leslley Anne Werlang Moitinho</div>
+                                        <div class="text-xs text-slate-500 flex items-center gap-1 mt-0.5">
+                                            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" /></svg>
+                                            Balcão
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm font-medium text-slate-600">4 itens</td>
+                                    <td class="px-6 py-4">
+                                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-600/20">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                            Concluído
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <strong class="text-slate-800">R$ 109,50</strong>
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="p-1.5 text-slate-400 hover:text-brand-600 hover:bg-brand-50 rounded transition-colors" title="Ver detalhes">
+                                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-slate-50 transition-colors group opacity-60">
+                                    <td class="px-6 py-4">
+                                        <span class="font-bold text-slate-500 line-through">#10541</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="text-sm text-slate-500">10/04/26</div>
+                                        <div class="text-xs text-slate-400">08:15</div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="text-sm font-medium text-slate-500 line-through truncate max-w-[200px]">Cliente Teste</div>
+                                        <div class="text-xs text-slate-400 flex items-center gap-1 mt-0.5">
+                                            <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+                                            Delivery
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm font-medium text-slate-400">1 item</td>
+                                    <td class="px-6 py-4">
+                                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold bg-red-50 text-red-700 ring-1 ring-inset ring-red-600/10">
+                                            Cancelado
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <strong class="text-slate-500 line-through">R$ 26,00</strong>
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="p-1.5 text-slate-300 cursor-not-allowed" title="Sem ações">
+                                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" /></svg>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="hidden flex-col items-center justify-center p-12 text-center" id="history-empty">
+                        <svg class="w-12 h-12 text-slate-300 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                        <p class="text-sm font-semibold text-slate-600">Nenhuma venda encontrada no período.</p>
+                        <p class="text-xs text-slate-500 mt-1">Ajuste os filtros de data ou status para ver mais resultados.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/audit-log.js"></script>
+    <script src="../assets/js/painel-vendas.js"></script>
+    <script src="../assets/js/pages/historico.js"></script>
+</body>
+</html>

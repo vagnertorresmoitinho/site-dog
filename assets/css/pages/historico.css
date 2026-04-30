@@ -1,0 +1,261 @@
+/* Estilos especificos da tela historico. */
+body[data-page="historico"] {
+}
+
+.history-card {
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+
+.history-controls {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) 180px 180px auto;
+  gap: 12px;
+  align-items: end;
+  padding: 16px;
+  border-bottom: 1px solid rgba(213, 137, 26, 0.14);
+}
+
+.history-controls label,
+.history-search {
+  display: grid;
+  gap: 7px;
+  font-weight: 900;
+}
+
+.history-controls span {
+  color: #7d6558;
+  font-size: 0.84rem;
+}
+
+.history-controls input,
+.history-controls select {
+  width: 100%;
+  border: 1px solid rgba(213, 137, 26, 0.22);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.88);
+  color: #221812;
+  font: inherit;
+}
+
+.history-controls input:focus,
+.history-controls select:focus {
+  outline: none;
+  border-color: rgba(217,107,11,0.68);
+  box-shadow: 0 0 0 4px rgba(217,107,11,0.12);
+}
+
+.history-export {
+  min-height: 44px;
+  border: 0;
+  border-radius: 13px;
+  background: #221812;
+  color: #fff;
+  padding: 0 16px;
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.history-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(213, 137, 26, 0.16);
+  border-bottom: 1px solid rgba(213, 137, 26, 0.14);
+}
+
+.history-summary > div {
+  display: grid;
+  gap: 4px;
+  padding: 16px;
+  background: rgba(255,248,236,0.92);
+}
+
+.history-summary span {
+  color: #7d6558;
+  font-size: 0.84rem;
+  font-weight: 900;
+}
+
+.history-summary strong {
+  color: #221812;
+  font-size: 1.14rem;
+}
+
+.history-table-wrap {
+  overflow-x: auto;
+}
+
+.history-table {
+  width: 100%;
+  min-width: 920px;
+  border-collapse: collapse;
+}
+
+.history-table th,
+.history-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(213, 137, 26, 0.13);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.history-table th {
+  color: #7d6558;
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.history-table td {
+  color: #221812;
+  font-size: 0.9rem;
+}
+
+.history-code {
+  display: inline-flex;
+  margin-right: 6px;
+  font-weight: 900;
+}
+
+.history-origin {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 0.72rem;
+  font-weight: 900;
+  vertical-align: middle;
+}
+
+.history-client {
+  display: block;
+  margin-top: 8px;
+  color: #0f172a;
+}
+
+.history-muted {
+  display: block;
+  margin-top: 3px;
+  color: #8d7669;
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.history-items {
+  max-width: 360px;
+}
+
+.history-items > strong {
+  color: #0f172a;
+}
+
+.history-row:hover {
+  background: #fff7ed;
+}
+
+.history-status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #fff3df;
+  color: #7d3a08;
+  font-size: 0.78rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.history-status.concluido {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.history-status.cancelado {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.history-status.preparo,
+.history-status.saiu_entrega {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.history-total {
+  color: #07863d;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.history-total-cell,
+.history-actions-cell {
+  text-align: right;
+}
+
+.history-actions {
+  display: inline-flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.history-actions a,
+.history-actions button {
+  border: 1px solid rgba(213, 137, 26, 0.22);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.9);
+  color: #7d3a08;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.history-actions a:first-child {
+  background: #0f172a;
+  border-color: #0f172a;
+  color: #fff;
+}
+
+.history-actions button {
+  color: #b42318;
+}
+
+.history-empty {
+  padding: 34px;
+  color: #8d7669;
+  text-align: center;
+  font-weight: 900;
+}
+
+@media (max-width: 1080px) {
+  .history-controls,
+  .history-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .history-controls,
+  .history-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .history-table {
+    min-width: 760px;
+  }
+}

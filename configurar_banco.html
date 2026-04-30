@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configurar Banco - DogTop</title>
+  <style>
+    body { 
+      font-family: 'Segoe UI', sans-serif; 
+      padding: 20px; 
+      background: #1e1e1e; 
+      color: #ddd;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 { color: #ff6b00; }
+    h2 { color: #ff9800; margin-top: 30px; }
+    .step {
+      background: #2d2d2d;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 10px 0;
+      border-left: 4px solid #ff6b00;
+    }
+    .warning {
+      background: #3d2814;
+      border-left-color: #ff9800;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    code {
+      background: #0d0d0d;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    pre {
+      background: #0d0d0d;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 12px;
+      line-height: 1.4;
+      max-height: 400px;
+    }
+    button {
+      background: #ff6b00;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 10px 5px 10px 0;
+    }
+    button:hover { background: #ff8533; }
+    .success { color: #4caf50; }
+    .error { color: #f44336; }
+    #result { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>🐕 Configurar Banco de Dados - DogTop</h1>
+  
+  <div class="warning">
+    <strong>⚠️ IMPORTANTE:</strong> O banco não tem as tabelas necessárias. 
+    Execute o SQL abaixo no SQL Editor do Supabase para criar as tabelas.
+  </div>
+
+  <h2>Passo 1: Acesse o Supabase</h2>
+  <div class="step">
+    1. Acesse <a href="https://supabase.com/dashboard" target="_blank" style="color: #ff6b00;">https://supabase.com/dashboard</a><br>
+    2. Selecione o projeto <strong>anjuawcodnktbjsznpeb</strong><br>
+    3. No menu lateral, clique em <strong>SQL Editor</strong><br>
+    4. Copie o código abaixo e cole no editor<br>
+    5. Clique em <strong>Run</strong> para executar
+  </div>
+
+  <h2>Passo 2: SQL para criar tabelas</h2>
+  <pre>-- ============================================
+-- SCHEMA DOGTOP - MODO ONLINE
+-- ============================================
+
+-- PRODUTOS
+create table produtos (
+    id uuid primary key default gen_random_uuid(),
+    codigo text,
+    nome text not null,
+    categoria text,
+    descricao text,
+    preco_base numeric(10, 2) not null default 0,
+    preco_promocional numeric(10, 2),
+    custo_producao numeric(10, 2) default 0,
+    estoque integer default 0,
+    tempo_preparo_minutos integer default 15,
+    imagem text,
+    ingredientes text[] default '{}',
+    tags text[] default '{}',
+    ativo boolean not null default true,
+    created_at timestamptz default now(),
+    updated_at timestamptz default now()
+);
+
+-- ADICIONAIS
+create table adicionais (
+    id uuid primary key default gen_random_uuid(),
+    nome text not null,
+    descricao text,
+    preco_venda numeric(10, 2) not null default 0,
+    custo_estimado numeric(10, 2) default 0,
+    imagem text,
+    ativo boolean not null default true,
+    created_at timestamptz default now(),
+    updated_at timestamptz default now()
+);
+
+-- CLIENTES
+create table clientes (
+    id uuid primary key default gen_random_uuid(),
+    nome text not null,
+    cpf_cnpj text,
+    email text,
+    ddi_celular text default '+55',
+    telefone_celular text,
+    ddi_telefone text default '+55',
+    telefone_fixo text,
+    endereco text,
+    numero text,
+    bairro text,
+    cep text,
+    complemento text,
+    ponto_referencia text,
+    status text default 'Ativo',
+    saldo numeric(10, 2) default 0,
+    observacoes text,
+    created_at timestamptz default now(),
+    updated_at timestamptz default now()
+);
+
+-- ENTREGADORES
+create table entregadores (
+    id uuid primary key default gen_random_uuid(),
+    nome text not null,
+    telefone text,
+    veiculo text,
+    placa text,
+    ativo boolean not null default true,
+    created_at timestamptz default now(),
+    updated_at timestamptz default now()
+);
+
+-- PEDIDOS
+create table pedidos (
+    id uuid primary key default gen_random_uuid(),
+    cliente_id uuid references clientes(id),
+    nome_cliente text,
+    telefone text,
+    tipo_entrega text default 'Presencial',
+    endereco_entrega text,
+    bairro text,
+    cep text,
+    ponto_referencia text,
+    forma_pagamento text,
+    troco_para numeric(10, 2),
+    troco_devolver numeric(10, 2),
+    subtotal_original numeric(10, 2) default 0,
+    desconto numeric(10, 2) default 0,
+    subtotal numeric(10, 2) default 0,
+    taxa_entrega numeric(10, 2) default 0,
+    total_pedido numeric(10, 2) default 0,
+    status text default 'Recebido',
+    observacao text,
+    origem text default 'pdv',
+    created_at timestamptz default now(),
+    updated_at timestamptz default now()
+);
+
+-- ITENS DO PEDIDO
+create table itens_pedido (
+    id uuid primary key default gen_random_uuid(),
+    pedido_id uuid not null references pedidos(id) on delete cascade,
+    produto_id uuid references produtos(id),
+    adicional_id uuid references adicionais(id),
+    parent_item_id uuid references itens_pedido(id) on delete cascade,
+    tipo_item text not null,
+    nome_item text not null,
+    quantidade integer not null default 1,
+    preco_unitario numeric(10, 2) not null default 0,
+    custo_unitario numeric(10, 2) default 0,
+    observacao text,
+    created_at timestamptz default now()
+);
+
+-- ENTREGAS
+create table entregas (
+    id uuid primary key default gen_random_uuid(),
+    pedido_id uuid not null references pedidos(id) on delete cascade,
+    entregador_id uuid references entregadores(id),
+    status text default 'Aguardando',
+    saiu_em timestamptz,
+    entregue_em timestamptz,
+    confirmado_cliente_em timestamptz,
+    observacao text,
+    created_at timestamptz default now(),
+    updated_at timestamptz default now()
+);
+
+-- CONFIGURAÇÕES
+create table configuracoes (
+    id uuid primary key default gen_random_uuid(),
+    chave text unique not null,
+    valor jsonb,
+    created_at timestamptz default now(),
+    updated_at timestamptz default now()
+);
+
+-- ÁREAS DE ENTREGA
+create table areas_entrega (
+    id uuid primary key default gen_random_uuid(),
+    cidade text not null,
+    bairro text not null,
+    taxa_entrega numeric(10, 2) not null default 0,
+    ativo boolean default true,
+    created_at timestamptz default now(),
+    updated_at timestamptz default now()
+);
+
+-- AUDIT LOGS
+create table audit_logs (
+    id uuid primary key default gen_random_uuid(),
+    acao text not null,
+    entidade text not null,
+    entidade_id text,
+    dados_old jsonb,
+    dados_new jsonb,
+    usuario text,
+    ip text,
+    created_at timestamptz default now()
+);
+
+-- ÍNDICES
+create index idx_produtos_categoria on produtos(categoria);
+create index idx_produtos_ativo on produtos(ativo);
+create index idx_produtos_nome on produtos(nome);
+create index idx_clientes_telefone on clientes(telefone_celular);
+create index idx_clientes_status on clientes(status);
+create index idx_pedidos_status on pedidos(status);
+create index idx_pedidos_cliente_id on pedidos(cliente_id);
+create index idx_pedidos_created_at on pedidos(created_at desc);
+create index idx_itens_pedido_pedido_id on itens_pedido(pedido_id);
+create index idx_entregas_pedido_id on entregas(pedido_id);
+create index idx_entregas_status on entregas(status);
+
+-- CONFIGURAÇÕES INICIAIS
+insert into configuracoes (chave, valor) values
+('empresa', '{"nome": "Dogtop", "whatsapp": "+55 65 99361-2193", "endereco": "Avenida Modesto Paludo, 2440NW"}'::jsonb),
+('moeda', '{"codigo": "BRL", "simbolo": "R$", "casasDecimais": true}'::jsonb),
+('pedidos', '{"taxaEntrega": 8, "status": {"pendente": true, "confirmado": true, "pago": true, "producao": true, "pronto": true, "saiuEntrega": true, "prontoRetirar": true}}'::jsonb),
+('pagamentos', '{"pix": true, "dinheiro": true, "cartaoDebito": true, "cartaoCredito": true}'::jsonb);
+
+-- ÁREAS DE ENTREGA PADRÃO
+insert into areas_entrega (cidade, bairro, taxa_entrega) values
+('Sapezal', 'Centro', 8),
+('Sapezal', 'Jardim das Palmeiras', 8),
+('Sapezal', 'São José', 10),
+('Canarana', 'Centro', 8),
+('Canarana', 'São João', 10);
+
+-- PRODUTO DE TESTE
+insert into produtos (nome, categoria, preco_base, descricao) values
+('Cachorro Quente', 'Lanches', 12.00, 'Pão com salsicha, batata palha, tomate e maionese');
+
+select 'Banco configurado com sucesso!' as resultado;</pre>
+
+  <h2>Passo 3: Testar conexão</h2>
+  <div class="step">
+    Após executar o SQL acima, clique no botão abaixo para testar:
+    <br><br>
+    <button onclick="testarConexao()">🧪 Testar Conexão</button>
+    <button onclick="location.reload()">🔄 Recarregar</button>
+  </div>
+
+  <div id="result"></div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/data-manager.js"></script>
+
+  <script>
+    async function testarConexao() {
+      const result = document.getElementById('result');
+      result.innerHTML = '<p class="loading">⏳ Testando conexão...</p>';
+      
+      await new Promise(r => setTimeout(r, 500));
+      
+      const mode = window.DogtopData?.mode;
+      
+      if (mode === 'online') {
+        result.innerHTML = '<p class="success">🎉 SUCESSO! Sistema conectado ao banco de dados!</p>';
+        
+        // Mostrar dados
+        const produtos = await window.DogtopData.produtos.listar();
+        const clientes = await window.DogtopData.clientes.listar();
+        const pedidos = await window.DogtopData.pedidos.listar();
+        
+        result.innerHTML += `
+          <div class="step">
+            <strong>Estatísticas:</strong><br>
+            📦 Produtos: ${produtos.length}<br>
+            👥 Clientes: ${clientes.length}<br>
+            📋 Pedidos: ${pedidos.length}
+          </div>
+        `;
+      } else {
+        result.innerHTML = '<p class="error">❌ Ainda offline. Execute o SQL no Supabase primeiro.</p>';
+      }
+    }
+  </script>
+</body>
+</html>

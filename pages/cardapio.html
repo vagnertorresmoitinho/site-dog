@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dogtop | Cardapio Digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/pages/cardapio.css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body>
+    <nav class="admin-return" aria-label="Navegação administrativa">
+        <div>
+            <a href="./dashboard.html" class="admin-return__brand">Dogtop Admin</a>
+            <a href="./dashboard.html">Painel</a>
+            <a href="./vendas.html">Vendas</a>
+            <a href="./produtos.html">Produtos</a>
+            <a href="./insumos.html">Insumos</a>
+            <a href="./cozinha.html">Cozinha</a>
+            <a href="./pedidos.html" class="admin-return__cta">Voltar ao Sistema</a>
+        </div>
+    </nav>
+
+    <header class="menu-app-header">
+        <a href="./pedidos-online.html" id="menu-logo" class="menu-logo" aria-label="Voltar para inicio">
+            <span>DT</span>
+        </a>
+        <div class="menu-brand">
+            <strong id="menu-store-name">Dogtop</strong>
+            <span id="menu-store-contact">Delivery e retirada</span>
+        </div>
+        <button type="button" id="menu-print" class="menu-print-button" aria-label="Imprimir cardapio">
+            Imprimir
+        </button>
+    </header>
+
+    <main class="menu-shell">
+        <section class="menu-hero">
+            <div>
+                <p class="menu-eyebrow">Cardapio digital</p>
+                <h1>Escolha rapido. Revise no carrinho.</h1>
+                <p id="menu-hero-copy">Busque por nome ou navegue pelas categorias para montar seu pedido.</p>
+            </div>
+            <a href="./pedidos-online.html" class="menu-hero-action">Pedido completo</a>
+        </section>
+
+        <section class="menu-toolbar" aria-label="Filtros do cardapio">
+            <label class="menu-search">
+                <span>Buscar</span>
+                <input type="search" id="menu-search" placeholder="Buscar lanche, bebida ou adicional..." autocomplete="off" />
+            </label>
+            <div class="menu-tabs" id="menu-tabs" role="tablist" aria-label="Categorias"></div>
+        </section>
+
+        <section class="menu-list-header">
+            <div>
+                <h2 id="menu-current-category">Todos os itens</h2>
+                <p id="menu-product-count">0 itens disponiveis</p>
+            </div>
+            <span id="menu-status-note">Toque em + para adicionar</span>
+        </section>
+
+        <section id="menu-products" class="menu-products" aria-live="polite"></section>
+
+        <div id="menu-empty" class="menu-empty hidden">
+            <strong>Nenhum item encontrado.</strong>
+            <span>Tente buscar por outro nome ou mudar a categoria.</span>
+        </div>
+    </main>
+
+    <aside id="cart-bar" class="cart-bar hidden" aria-live="polite">
+        <button type="button" id="cart-open">
+            <span><strong id="cart-count">0 itens</strong><small id="cart-preview">Carrinho vazio</small></span>
+            <b id="cart-total">R$ 0,00</b>
+        </button>
+    </aside>
+
+    <div id="cart-modal" class="cart-modal hidden" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+        <div class="cart-modal__backdrop" data-close-cart></div>
+        <section class="cart-modal__panel">
+            <header class="cart-modal__header">
+                <div>
+                    <h2 id="cart-title">Seu pedido</h2>
+                    <p>Confira os itens antes de ir para pagamento.</p>
+                </div>
+                <button type="button" data-close-cart aria-label="Fechar carrinho">x</button>
+            </header>
+            <div id="cart-items" class="cart-items"></div>
+            <div class="cart-summary">
+                <span>Total</span>
+                <strong id="cart-modal-total">R$ 0,00</strong>
+            </div>
+            <p id="cart-feedback" class="cart-feedback"></p>
+            <button type="button" id="cart-checkout" class="cart-checkout">Ir para pagamento</button>
+            <button type="button" id="cart-clear" class="cart-clear">Limpar carrinho</button>
+        </section>
+    </div>
+
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/stock-recipes.js"></script>
+    <script src="../assets/js/pages/cardapio.js"></script>
+    <script src="../assets/js/online-home.js"></script>
+</body>
+</html>

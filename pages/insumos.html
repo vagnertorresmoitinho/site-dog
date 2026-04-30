@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dogtop | Insumos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+    <link rel="stylesheet" href="../assets/css/pages/insumos.css" />
+</head>
+<body class="text-slate-800 antialiased h-screen flex overflow-hidden">
+    <aside class="w-64 bg-white border-r border-slate-200 flex flex-col h-full flex-shrink-0" id="sidebar">
+        <div class="h-16 flex items-center px-6 border-b border-slate-200">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-brand-500 text-white rounded-md flex items-center justify-center font-bold text-sm">DT</div>
+                <div>
+                    <h1 class="font-bold text-sm leading-tight text-slate-900">Dogtop</h1>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Delivery &amp; Retirada</p>
+                </div>
+            </div>
+        </div>
+        <nav class="flex-1 overflow-y-auto no-scrollbar py-4 px-3 space-y-1"></nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col h-full overflow-hidden relative bg-slate-50">
+        <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 flex-shrink-0">
+            <div>
+                <h1 id="page-title" class="text-xl font-bold text-slate-800">Insumos</h1>
+                <p id="page-subtitle" class="text-xs text-slate-500 hidden md:block">Controle de estoque de preparo, receitas e baixas automáticas.</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <button type="button" id="input-open-form" class="px-4 py-2 bg-brand-500 hover:bg-brand-600 text-white text-sm font-bold rounded-md shadow-sm transition-colors">Novo Insumo</button>
+                <div class="w-px h-6 bg-slate-200 mx-2 hidden sm:block"></div>
+                <div class="flex items-center gap-3">
+                    <div class="text-right hidden md:block">
+                        <p class="text-sm font-semibold text-slate-800 leading-none">Vagner Torres</p>
+                        <p class="text-xs text-slate-500 mt-1">Gestão Dogtop</p>
+                    </div>
+                    <div class="w-9 h-9 rounded-full bg-slate-200 border border-slate-300 flex items-center justify-center font-bold text-slate-600 text-sm">VT</div>
+                </div>
+            </div>
+        </header>
+
+        <section class="flex-1 overflow-y-auto p-4 lg:p-8">
+            <div class="max-w-[1400px] mx-auto space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <article class="input-stat">
+                        <span class="input-stat__icon bg-red-50 text-red-600">□</span>
+                        <div>
+                            <p>Total de Insumos</p>
+                            <strong id="input-total">0</strong>
+                        </div>
+                    </article>
+                    <article class="input-stat">
+                        <span class="input-stat__icon bg-orange-50 text-orange-600">!</span>
+                        <div>
+                            <p>Estoque Baixo</p>
+                            <strong id="input-low">0</strong>
+                        </div>
+                    </article>
+                    <article class="input-stat">
+                        <span class="input-stat__icon bg-red-50 text-red-600">×</span>
+                        <div>
+                            <p>Zerados</p>
+                            <strong id="input-zero">0</strong>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="p-5 border-b border-slate-200 bg-slate-50 flex flex-col lg:flex-row gap-4 lg:items-center justify-between">
+                        <div>
+                            <h2 class="font-bold text-slate-800">Estoque de Insumos</h2>
+                            <p class="text-xs text-slate-500 mt-1">A baixa automática acontece quando o pedido é concluído e possui receita vinculada.</p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+                            <input type="search" id="input-search" class="w-full sm:w-72 px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white" placeholder="Buscar insumo..." />
+                            <select id="input-category" class="w-full sm:w-52 px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white">
+                                <option value="todos">Todas categorias</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="input-table">
+                            <thead>
+                                <tr>
+                                    <th>Insumo</th>
+                                    <th>Categoria</th>
+                                    <th>Estoque</th>
+                                    <th>Mínimo</th>
+                                    <th>Nível</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="input-table-body"></tbody>
+                        </table>
+                    </div>
+
+                    <div class="hidden p-12 text-center text-sm font-semibold text-slate-500" id="input-empty">
+                        Nenhum insumo encontrado.
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="p-5 border-b border-slate-200 bg-slate-50 flex flex-col lg:flex-row gap-4 lg:items-end justify-between">
+                        <div>
+                            <h2 class="font-bold text-slate-800">Receitas por Produto</h2>
+                            <p class="text-xs text-slate-500 mt-1">Defina quais insumos serão baixados quando um produto for vendido.</p>
+                        </div>
+                        <label class="recipe-product-select">
+                            <span>Produto</span>
+                            <select id="recipe-product"></select>
+                        </label>
+                    </div>
+
+                    <div class="p-5 border-b border-slate-100 grid grid-cols-1 lg:grid-cols-[1fr_160px_auto] gap-3 items-end">
+                        <label class="recipe-field">
+                            <span>Insumo</span>
+                            <select id="recipe-input"></select>
+                        </label>
+                        <label class="recipe-field">
+                            <span>Quantidade por unidade</span>
+                            <input type="number" id="recipe-quantity" min="0" step="0.001" placeholder="Ex: 0.05" />
+                        </label>
+                        <button type="button" id="recipe-add">Adicionar à receita</button>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="input-table recipe-table">
+                            <thead>
+                                <tr>
+                                    <th>Insumo</th>
+                                    <th>Categoria</th>
+                                    <th>Quantidade</th>
+                                    <th>Unidade</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recipe-table-body"></tbody>
+                        </table>
+                    </div>
+
+                    <div class="hidden p-10 text-center text-sm font-semibold text-slate-500" id="recipe-empty">
+                        Selecione um produto e adicione os insumos que compõem a receita.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="input-modal hidden" id="input-modal">
+        <div class="input-modal__backdrop" data-close-input-modal></div>
+        <form class="input-modal__panel" id="input-form">
+            <div class="input-modal__header">
+                <div>
+                    <h2 id="input-form-title">Novo Insumo</h2>
+                    <p>Cadastre o estoque usado na produção.</p>
+                </div>
+                <button type="button" data-close-input-modal aria-label="Fechar">×</button>
+            </div>
+            <input type="hidden" name="id" />
+            <label>
+                <span>Nome</span>
+                <input name="nome" required placeholder="Ex: Purê de batata" />
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <label>
+                    <span>Categoria</span>
+                    <input name="categoria" required placeholder="Base, Bebidas..." />
+                </label>
+                <label>
+                    <span>Unidade</span>
+                    <select name="unidade" required>
+                        <option value="un">un</option>
+                        <option value="kg">kg</option>
+                        <option value="g">g</option>
+                        <option value="l">l</option>
+                        <option value="ml">ml</option>
+                    </select>
+                </label>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <label>
+                    <span>Estoque atual</span>
+                    <input type="number" name="estoque" min="0" step="0.001" required />
+                </label>
+                <label>
+                    <span>Estoque mínimo</span>
+                    <input type="number" name="minimo" min="0" step="0.001" required />
+                </label>
+            </div>
+            <label>
+                <span>Custo unitário (opcional)</span>
+                <input type="number" name="custoUnitario" min="0" step="0.01" placeholder="0.00" />
+            </label>
+            <div class="input-modal__actions">
+                <button type="button" data-close-input-modal>Cancelar</button>
+                <button type="submit">Salvar Insumo</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/audit-log.js"></script>
+    <script src="../assets/js/painel-vendas.js"></script>
+    <script src="../assets/js/stock-recipes.js"></script>
+    <script src="../assets/js/pages/insumos.js"></script>
+</body>
+</html>

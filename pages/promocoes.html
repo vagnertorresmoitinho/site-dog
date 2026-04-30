@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dogtop | Promoções</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased h-screen flex overflow-hidden">
+
+    <aside class="w-64 bg-white border-r border-slate-200 flex flex-col h-full flex-shrink-0" id="sidebar">
+        <div class="h-16 flex items-center px-6 border-b border-slate-200">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-brand-500 text-white rounded-md flex items-center justify-center font-bold text-sm">
+                    DT
+                </div>
+                <div>
+                    <h1 class="font-bold text-sm leading-tight text-slate-900">Dogtop</h1>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Delivery &amp; Retirada</p>
+                </div>
+            </div>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto no-scrollbar py-4 px-3 space-y-1">
+            <p class="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 mt-4">Navegação</p>
+            
+            <a href="./dashboard.html" class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-md font-medium text-sm transition-colors">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7" /></svg>
+                Dashboard
+            </a>
+
+            <a href="./vendas.html" class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-md font-medium text-sm transition-colors">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                Vendas
+            </a>
+
+            <a href="./pedidos.html" class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-md font-medium text-sm transition-colors">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+                Pedidos
+            </a>
+            
+            <a href="./historico.html" class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-md font-medium text-sm transition-colors">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                Histórico
+            </a>
+
+            <p class="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 mt-6">Administração</p>
+
+            <div class="space-y-1">
+                <div class="flex items-center justify-between px-3 py-2 text-slate-900 bg-slate-50 rounded-md font-medium text-sm">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                        Cadastros
+                    </div>
+                    <svg class="w-4 h-4 text-slate-500 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                </div>
+                
+                <div class="pl-11 pr-3 py-1 space-y-1">
+                    <a href="./produtos.html" class="block py-1.5 text-sm text-slate-500 hover:text-slate-900 transition-colors">Produtos</a>
+                    <a href="./clientes.html" class="block py-1.5 text-sm text-slate-500 hover:text-slate-900 transition-colors">Clientes</a>
+                    <a href="./usuarios.html" class="block py-1.5 text-sm text-slate-500 hover:text-slate-900 transition-colors">Usuários</a>
+                    <a href="./entregadores.html" class="block py-1.5 text-sm text-slate-500 hover:text-slate-900 transition-colors">Entregadores</a>
+                    <a href="./promocoes.html" class="block py-1.5 text-sm font-semibold text-brand-600 transition-colors">Promoções</a>
+                </div>
+            </div>
+
+            <a href="./configuracoes.html" class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-md font-medium text-sm transition-colors mt-2">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                Configurações
+            </a>
+        </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col h-full overflow-hidden relative bg-slate-50">
+        
+        <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 flex-shrink-0">
+            <div>
+                <h1 id="page-title" class="text-xl font-bold text-slate-800">Promoções</h1>
+                <p id="page-subtitle" class="text-xs text-slate-500 hidden md:block">Gestão de campanhas, descontos e ações de marketing comercial.</p>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <button type="button" class="hidden sm:block px-4 py-2 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-sm font-semibold rounded-md shadow-sm transition-colors">
+                    Exportar
+                </button>
+                <div class="w-px h-6 bg-slate-200 mx-2 hidden sm:block"></div>
+                <div class="flex items-center gap-3">
+                    <div class="text-right hidden md:block">
+                        <p class="text-sm font-semibold text-slate-800 leading-none">Ana Martins</p>
+                        <p class="text-xs text-slate-500 mt-1">Gestora</p>
+                    </div>
+                    <div class="w-9 h-9 rounded-full bg-slate-200 border border-slate-300 flex items-center justify-center font-bold text-slate-600 text-sm">
+                        AM
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="flex-1 overflow-y-auto p-4 lg:p-8">
+            <div class="max-w-7xl mx-auto space-y-6">
+                
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6 lg:p-8 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+                    <div class="absolute -right-16 -top-16 w-64 h-64 bg-brand-50 rounded-full opacity-50 blur-3xl pointer-events-none"></div>
+                    
+                    <div class="w-16 h-16 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center shrink-0">
+                        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    </div>
+                    <div class="flex-1 text-center md:text-left z-10">
+                        <span class="inline-block px-2.5 py-1 bg-brand-50 text-brand-700 text-[10px] font-bold uppercase tracking-wider rounded border border-brand-100 mb-2">Central de Marketing</span>
+                        <h2 class="text-xl font-bold text-slate-800 mb-2">Campanhas, Cupons e Regras Sazonais</h2>
+                        <p class="text-sm text-slate-500 max-w-2xl">Gerencie descontos, combos promocionais e ofertas com foco em conversão. Os produtos listados abaixo já estão ativos no catálogo para os clientes.</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3 shrink-0 z-10 w-full md:w-auto">
+                        <a href="./dashboard.html" class="px-5 py-2.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold rounded-lg shadow-sm transition-colors text-sm text-center">
+                            Ver Landing Page
+                        </a>
+                        <button type="button" id="open-promo-modal" class="px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-lg shadow-sm transition-colors text-sm text-center flex items-center justify-center gap-2">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
+                            Nova Promoção
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+                    
+                    <div class="p-5 border-b border-slate-200 bg-slate-50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        <div>
+                            <div class="flex items-center gap-3">
+                                <h3 class="font-bold text-slate-800">Tabela de Ofertas Ativas</h3>
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700 ring-1 ring-inset ring-emerald-600/20" id="promotions-count">2 ativas</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-1">Itens puxados da base de produtos quando possuem preço promocional.</p>
+                        </div>
+                        <div class="relative w-full sm:w-80">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                            </div>
+                            <input type="text" id="promotions-search" placeholder="Pesquisar oferta..." 
+                                class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm bg-white" />
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse min-w-[800px]">
+                            <thead>
+                                <tr class="bg-white border-b border-slate-200 text-xs uppercase tracking-wider text-slate-500 font-semibold">
+                                    <th class="px-6 py-4">Código</th>
+                                    <th class="px-6 py-4">Produto</th>
+                                    <th class="px-6 py-4">Categoria</th>
+                                    <th class="px-6 py-4 text-right">Preço Normal</th>
+                                    <th class="px-6 py-4 text-right">Preço Promocional</th>
+                                    <th class="px-6 py-4 text-center">Desconto</th>
+                                    <th class="px-6 py-4 text-center">Status</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody class="divide-y divide-slate-100" id="promotions-table-body">
+                                
+                                <tr class="hover:bg-slate-50 transition-colors group">
+                                    <td class="px-6 py-4 text-sm font-medium text-slate-500">PROD-001</td>
+                                    <td class="px-6 py-4">
+                                        <span class="font-bold text-slate-800 text-sm">Dogão Completo</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-slate-600">Lanches</td>
+                                    <td class="px-6 py-4 text-right">
+                                        <span class="text-sm font-medium text-slate-400 line-through">R$ 32,00</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <span class="text-sm font-bold text-brand-600 bg-brand-50 px-2 py-1 rounded">R$ 26,00</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <span class="inline-block px-2 py-1 text-xs font-bold text-emerald-700 bg-emerald-100 rounded">
+                                            18% OFF
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block" title="Ativo"></span>
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-slate-50 transition-colors group">
+                                    <td class="px-6 py-4 text-sm font-medium text-slate-500">CMB-104</td>
+                                    <td class="px-6 py-4">
+                                        <span class="font-bold text-slate-800 text-sm">Combo Fim de Semana</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-slate-600">Combos</td>
+                                    <td class="px-6 py-4 text-right">
+                                        <span class="text-sm font-medium text-slate-400 line-through">R$ 55,00</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <span class="text-sm font-bold text-brand-600 bg-brand-50 px-2 py-1 rounded">R$ 49,90</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <span class="inline-block px-2 py-1 text-xs font-bold text-emerald-700 bg-emerald-100 rounded">
+                                            9% OFF
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block" title="Ativo"></span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="hidden flex-col items-center justify-center p-12 text-center" id="promotions-empty">
+                        <svg class="w-12 h-12 text-slate-300 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v1m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <p class="text-sm font-semibold text-slate-600">Nenhum produto com preço promocional encontrado.</p>
+                        <p class="text-xs text-slate-500 mt-1">Configure o valor promocional no cadastro de produtos.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <div class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 hidden" id="promo-modal" aria-hidden="true">
+    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" id="promo-modal-backdrop" data-close-promo-modal></div>
+    
+    <div class="relative bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[95vh] flex flex-col" role="dialog" aria-modal="true" aria-labelledby="promo-modal-title">
+        
+        <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-white rounded-t-xl shrink-0">
+            <h3 class="text-lg font-bold text-slate-800" id="promo-modal-title">Nova Promoção</h3>
+            <button type="button" class="text-slate-400 hover:text-slate-600 hover:bg-slate-100 p-1.5 rounded-full transition-colors" aria-label="Fechar" data-close-promo-modal>
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+        </div>
+
+        <div class="p-6 overflow-y-auto flex-1 bg-slate-50/30">
+            <form id="promo-form" class="space-y-6">
+                
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">Título</label>
+                    <input type="text" name="titulo" required placeholder="Ex: 🚨 INAUGURAÇÃO DOG TOP 🚨" 
+                        class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none text-sm text-slate-800 bg-white" />
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">Imagem da promoção</label>
+                    <label class="flex flex-col items-center justify-center w-full h-32 px-4 py-6 bg-white border-2 border-slate-300 border-dashed rounded-xl cursor-pointer hover:bg-slate-50 hover:border-brand-400 transition-colors group">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <svg class="w-8 h-8 text-slate-400 group-hover:text-brand-500 mb-2 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                            </svg>
+                            <p class="text-sm text-slate-500 font-medium">Clique para enviar uma imagem</p>
+                            <p class="text-xs text-slate-400 mt-1">JPG, PNG até 5MB</p>
+                        </div>
+                        <input type="file" name="imagem" accept="image/jpeg, image/png" class="hidden" />
+                    </label>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">Conteúdo da promoção</label>
+                    <textarea name="conteudo" rows="4" required placeholder="Cole aqui o texto da promoção com emojis, preços, etc." 
+                        class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none text-sm text-slate-800 bg-white resize-y font-mono"></textarea>
+                    <p class="text-xs text-slate-500 mt-1.5">Suporta emojis e quebras de linha.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">Início (opcional)</label>
+                        <input type="datetime-local" name="dataInicio" 
+                            class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none text-sm text-slate-800 bg-white" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">Fim (opcional)</label>
+                        <input type="datetime-local" name="dataFim" 
+                            class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none text-sm text-slate-800 bg-white" />
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="px-6 py-4 border-t border-slate-200 bg-white rounded-b-xl shrink-0 flex justify-end gap-3">
+            <button type="button" class="px-5 py-2.5 text-slate-700 bg-white border border-slate-300 hover:bg-slate-50 font-semibold rounded-lg transition-colors text-sm" data-close-promo-modal>
+                Cancelar
+            </button>
+            <button type="submit" form="promo-form" class="px-6 py-2.5 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-lg shadow-sm transition-colors text-sm">
+                Salvar
+            </button>
+        </div>
+
+    </div>
+</div>
+    </main>
+
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/audit-log.js"></script>
+    <script src="../assets/js/painel-vendas.js"></script>
+    <script src="../assets/js/pages/promocoes.js"></script>
+</body>
+</html>

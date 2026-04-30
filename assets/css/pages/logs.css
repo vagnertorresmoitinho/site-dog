@@ -1,0 +1,57 @@
+body[data-page="logs"] {
+}
+
+.audit-stats {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 18px;
+}
+
+.audit-small-value {
+  font-size: 1.15rem;
+}
+
+.audit-toolbar {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(180px, 220px) minmax(160px, 200px) minmax(160px, 200px);
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.audit-toolbar input,
+.audit-toolbar select {
+  width: 100%;
+  border: 1px solid rgba(213, 137, 26, 0.24);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.82);
+  color: #221812;
+  font: inherit;
+}
+
+.audit-table-wrap {
+  overflow-x: auto;
+}
+
+.audit-table td {
+  vertical-align: top;
+}
+
+.audit-table td:last-child {
+  min-width: 280px;
+}
+
+.audit-denied {
+  display: grid;
+  gap: 18px;
+}
+
+.audit-denied .action-btn {
+  width: fit-content;
+}
+
+@media (max-width: 900px) {
+  .audit-stats,
+  .audit-toolbar {
+    grid-template-columns: 1fr;
+  }
+}

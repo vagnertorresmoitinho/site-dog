@@ -1,0 +1,419 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dogtop | Produtos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Estilização extra para as tags clicáveis no formulário */
+        .tag-checkbox:checked + span {
+            background-color: #f97316; /* brand-500 */
+            color: white;
+            border-color: #f97316;
+        }
+    </style>
+    <link rel="stylesheet" href="../assets/css/pages/produtos.css" />
+</head>
+<body class="text-slate-800 antialiased h-screen flex overflow-hidden">
+
+    <aside class="w-64 bg-white border-r border-slate-200 flex flex-col h-full flex-shrink-0" id="sidebar">
+        <div class="h-16 flex items-center px-6 border-b border-slate-200">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-brand-500 text-white rounded-md flex items-center justify-center font-bold text-sm">
+                    DT
+                </div>
+                <div>
+                    <h1 class="font-bold text-sm leading-tight text-slate-900">Dogtop</h1>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Delivery &amp; Retirada</p>
+                </div>
+            </div>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto no-scrollbar py-4 px-3 space-y-1">
+            <p class="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 mt-4">Navegação</p>
+            <a href="./dashboard.html" class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-md font-medium text-sm transition-colors">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7" /></svg> Dashboard
+            </a>
+            <a href="./vendas.html" class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-md font-medium text-sm transition-colors">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg> Vendas
+            </a>
+            <a href="./pedidos.html" class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-md font-medium text-sm transition-colors">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg> Pedidos
+            </a>
+            <a href="./historico.html" class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-md font-medium text-sm transition-colors">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> Histórico
+            </a>
+
+            <p class="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 mt-6">Administração</p>
+            <div class="space-y-1">
+                <div class="flex items-center justify-between px-3 py-2 text-slate-900 bg-slate-50 rounded-md font-medium text-sm">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                        Cadastros
+                    </div>
+                    <svg class="w-4 h-4 text-slate-500 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                </div>
+                <div class="pl-11 pr-3 py-1 space-y-1">
+                    <a href="./produtos.html" class="block py-1.5 text-sm font-semibold text-brand-600 transition-colors">Produtos</a>
+                    <a href="./clientes.html" class="block py-1.5 text-sm text-slate-500 hover:text-slate-900 transition-colors">Clientes</a>
+                    <a href="./usuarios.html" class="block py-1.5 text-sm text-slate-500 hover:text-slate-900 transition-colors">Usuários</a>
+                    <a href="./entregadores.html" class="block py-1.5 text-sm text-slate-500 hover:text-slate-900 transition-colors">Entregadores</a>
+                    <a href="./promocoes.html" class="block py-1.5 text-sm text-slate-500 hover:text-slate-900 transition-colors">Promoções</a>
+                </div>
+            </div>
+            <a href="./configuracoes.html" class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-md font-medium text-sm transition-colors mt-2">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg> Configurações
+            </a>
+        </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col h-full overflow-hidden relative bg-slate-50">
+        
+        <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 flex-shrink-0">
+            <div>
+                <h1 id="page-title" class="text-xl font-bold text-slate-800">Produtos</h1>
+                <p id="page-subtitle" class="text-xs text-slate-500 hidden md:block">Gestão de catálogo, estoque e performance dos itens.</p>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <button type="button" id="product-open-form" class="px-4 py-2 bg-brand-500 hover:bg-brand-600 text-white text-sm font-bold rounded-md shadow-sm transition-colors">Novo Produto</button>
+                <button type="button" class="hidden sm:block px-4 py-2 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-sm font-semibold rounded-md shadow-sm transition-colors">Exportar Excel</button>
+                <div class="w-px h-6 bg-slate-200 mx-2 hidden sm:block"></div>
+                <div class="flex items-center gap-3">
+                    <div class="text-right hidden md:block">
+                        <p class="text-sm font-semibold text-slate-800 leading-none">Ana Martins</p>
+                        <p class="text-xs text-slate-500 mt-1">Gestora</p>
+                    </div>
+                    <div class="w-9 h-9 rounded-full bg-slate-200 border border-slate-300 flex items-center justify-center font-bold text-slate-600 text-sm">AM</div>
+                </div>
+            </div>
+        </header>
+
+        <section class="flex-1 overflow-y-auto p-4 lg:p-8">
+            <div class="max-w-[1400px] mx-auto space-y-6">
+                
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
+                        </div>
+                        <div>
+                            <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Total</span>
+                            <strong class="block text-2xl font-bold text-slate-800 leading-none" id="product-total">0</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        </div>
+                        <div>
+                            <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Ativos</span>
+                            <strong class="block text-2xl font-bold text-slate-800 leading-none" id="product-available">0</strong>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                        </div>
+                        <div>
+                            <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Estoque Baixo</span>
+                            <strong class="block text-2xl font-bold text-slate-800 leading-none" id="product-low-stock">0</strong>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        </div>
+                        <div>
+                            <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Valor Estoque</span>
+                            <strong class="block text-2xl font-bold text-slate-800 leading-none truncate max-w-[120px]" id="product-stock-value">R$ 0,00</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-6 items-start">
+                    
+                    <div class="product-form-modal hidden" id="product-form-modal">
+                        <div class="product-form-backdrop" data-close-product-form></div>
+                        <div class="product-form-drawer">
+                        <div class="px-6 py-4 border-b border-slate-100 bg-slate-50 rounded-t-xl flex items-start justify-between gap-4">
+                            <div>
+                                <h2 class="font-bold text-slate-800" id="product-form-title">Cadastrar Produto</h2>
+                                <p class="text-xs text-slate-500 mt-0.5">Preencha os dados do catálogo.</p>
+                            </div>
+                            <button type="button" class="product-form-close" data-close-product-form aria-label="Fechar cadastro">×</button>
+                        </div>
+
+                        <form id="product-form" class="p-6 space-y-4">
+                            <input type="hidden" name="id" />
+                            <input type="hidden" name="imagem" />
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Nome do Produto <span class="text-red-500">*</span></label>
+                                <input type="text" name="nome" required class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm" placeholder="Ex: Dogão Especial" />
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Categoria <span class="text-red-500">*</span></label>
+                                    <select name="categoria" required class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white">
+                                        <option value="">Selecione</option>
+                                        <option value="lanche">Lanche</option>
+                                        <option value="bebida">Bebida</option>
+                                        <option value="sobremesa">Sobremesa</option>
+                                        <option value="porcao">Porção</option>
+                                        <option value="combo">Combo</option>
+                                        <option value="adicional">Adicional</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Status <span class="text-red-500">*</span></label>
+                                    <select name="status" required class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white">
+                                        <option value="disponivel">Disponível</option>
+                                        <option value="indisponivel">Oculto/Indisponível</option>
+                                        <option value="esgotado">Esgotado</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Preço Normal <span class="text-red-500">*</span></label>
+                                    <div class="relative">
+                                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500 text-sm">R$</span>
+                                        <input type="number" name="preco" min="0" step="0.01" required class="w-full pl-9 pr-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm font-semibold text-slate-800" placeholder="0.00" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-brand-600 mb-1">Preço Promo</label>
+                                    <div class="relative">
+                                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500 text-sm">R$</span>
+                                        <input type="number" name="precoPromocional" min="0" step="0.01" class="w-full pl-9 pr-3 py-2 border border-brand-200 bg-brand-50 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm font-semibold text-brand-700" placeholder="0.00" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="col-span-1">
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Estoque</label>
+                                    <input type="number" name="estoque" min="0" step="1" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm text-center" placeholder="Qtd" />
+                                </div>
+                                <div class="col-span-1">
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Preparo</label>
+                                    <input type="number" name="tempoPreparo" min="1" step="1" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm text-center" placeholder="Min" />
+                                </div>
+                                <div class="col-span-1">
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">SKU</label>
+                                    <input type="text" name="codigo" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm uppercase text-center" placeholder="COD" />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Foto do Produto</label>
+                                <div class="flex items-center gap-3">
+                                    <div id="product-preview" class="w-12 h-12 rounded bg-slate-100 border border-slate-200 flex items-center justify-center text-[10px] text-slate-400 font-medium overflow-hidden shrink-0">
+                                        Img
+                                    </div>
+                                    <input type="file" name="arquivoImagem" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200 cursor-pointer border border-slate-200 rounded p-1" />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Ingredientes / Insumos</label>
+                                <input type="hidden" name="ingredientes" />
+                                <div class="ingredient-list mt-2" id="ingredient-list"></div>
+                                <p class="text-[11px] text-slate-500 mt-1">Selecione apenas os insumos já cadastrados na tela de Insumos. Produto não deve aceitar ingrediente digitado livremente.</p>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-2">Grupos de opções</label>
+                                <div class="option-group-list">
+                                    <label>
+                                        <input type="checkbox" name="optionGroups" value="ingredientes_base" />
+                                        <span>
+                                            <strong>O que vai no lanche?</strong>
+                                            <small>Itens que o cliente pode pedir para retirar.</small>
+                                        </span>
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" name="optionGroups" value="adicionais_pagos" />
+                                        <span>
+                                            <strong>Turbine seu lanche</strong>
+                                            <small>Adicionais pagos, como milho, cheddar e batata palha.</small>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Descrição Comercial</label>
+                                <textarea name="descricao" rows="2" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none text-sm resize-none" placeholder="O clássico da casa feito com muito amor."></textarea>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-2">Características (Tags)</label>
+                                <div class="flex flex-wrap gap-2" role="group" aria-label="Tags do produto">
+                                    <label class="cursor-pointer">
+                                        <input type="checkbox" name="tags" value="gluten" class="tag-checkbox hidden" />
+                                        <span class="inline-block px-3 py-1 rounded border border-slate-300 text-xs font-semibold text-slate-600 transition-colors">Contém Glúten</span>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input type="checkbox" name="tags" value="lactose" class="tag-checkbox hidden" />
+                                        <span class="inline-block px-3 py-1 rounded border border-slate-300 text-xs font-semibold text-slate-600 transition-colors">Lactose</span>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input type="checkbox" name="tags" value="vegetariano" class="tag-checkbox hidden" />
+                                        <span class="inline-block px-3 py-1 rounded border border-slate-300 text-xs font-semibold text-slate-600 transition-colors">Vegetariano</span>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input type="checkbox" name="tags" value="vegano" class="tag-checkbox hidden" />
+                                        <span class="inline-block px-3 py-1 rounded border border-slate-300 text-xs font-semibold text-slate-600 transition-colors">Vegano</span>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input type="checkbox" name="tags" value="picante" class="tag-checkbox hidden" />
+                                        <span class="inline-block px-3 py-1 rounded border border-slate-300 text-xs font-semibold text-slate-600 transition-colors">Picante 🌶️</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <hr class="border-slate-100 my-4">
+
+                            <div class="flex items-center justify-between pt-2">
+                                <button type="button" id="product-clear" class="px-4 py-2 text-slate-600 bg-white border border-slate-300 hover:bg-slate-100 font-semibold rounded-lg transition-colors text-sm">
+                                    Limpar
+                                </button>
+                                <button type="submit" id="product-submit" class="px-6 py-2 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-lg shadow-sm transition-colors text-sm">
+                                    Salvar Produto
+                                </button>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+
+                    <div class="w-full bg-white rounded-xl border border-slate-200 shadow-sm flex flex-col min-h-[600px]">
+                        
+                        <div class="p-5 border-b border-slate-200 bg-slate-50 rounded-t-xl flex flex-col gap-4 shrink-0">
+                            <div>
+                                <h3 class="font-bold text-slate-800">Catálogo de Produtos</h3>
+                                <p class="text-xs text-slate-500 mt-1">Produtos principais ficam separados dos adicionais para manter o cadastro limpo.</p>
+                            </div>
+
+                            <div class="product-category-tabs" id="product-category-tabs" role="group" aria-label="Categorias do catálogo">
+                                <button type="button" class="active" data-category-tab="todos">Todos</button>
+                                <button type="button" data-category-tab="lanche">Lanches</button>
+                                <button type="button" data-category-tab="bebida">Bebidas</button>
+                                <button type="button" data-category-tab="combo">Combos</button>
+                            </div>
+                            
+                            <div class="flex flex-col sm:flex-row gap-3 w-full">
+                                <div class="relative w-full sm:w-64">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                                    </div>
+                                    <input type="text" id="product-search" placeholder="Pesquisar catálogo..." class="w-full pl-9 pr-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white" />
+                                </div>
+                                <select id="product-category-filter" class="w-full sm:w-44 px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-500 outline-none text-sm bg-white cursor-pointer">
+                                    <option value="todos">Todas Categorias</option>
+                                    <option value="lanche">Lanches</option>
+                                    <option value="bebida">Bebidas</option>
+                                    <option value="sobremesa">Sobremesas</option>
+                                    <option value="combo">Combos</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="flex-1 overflow-x-auto">
+                            <table class="w-full text-left border-collapse min-w-[700px]" id="product-table">
+                                <thead>
+                                    <tr class="bg-white border-b border-slate-200 text-xs uppercase tracking-wider text-slate-500 font-semibold">
+                                        <th class="px-5 py-3">Produto</th>
+                                        <th class="px-5 py-3">Categoria</th>
+                                        <th class="px-5 py-3 text-right">Preço</th>
+                                        <th class="px-5 py-3 text-center">Estoque</th>
+                                        <th class="px-5 py-3 text-right">Ações</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody class="divide-y divide-slate-100" id="product-table-body"></tbody>
+                            </table>
+                        </div>
+
+                        <div class="hidden flex-col items-center justify-center p-12 text-center border-t border-slate-100" id="product-empty">
+                            <svg class="w-12 h-12 text-slate-300 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
+                            <p class="text-sm font-semibold text-slate-600">Nenhum produto cadastrado.</p>
+                            <p class="text-xs text-slate-500 mt-1">Use o formulário ao lado para adicionar o primeiro item.</p>
+                        </div>
+                    </div>
+
+                    <div class="w-full bg-white rounded-xl border border-slate-200 shadow-sm flex flex-col">
+                        <div class="p-5 border-b border-slate-200 bg-slate-50 rounded-t-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div>
+                                <h3 class="font-bold text-slate-800">Tabela de Adicionais</h3>
+                                <p class="text-xs text-slate-500 mt-1">Itens opcionais pagos para vincular aos lanches depois.</p>
+                            </div>
+                            <span class="text-xs font-bold text-brand-700 bg-brand-50 border border-brand-100 rounded-full px-3 py-1" id="additional-total">0 adicionais</span>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse min-w-[620px]" id="additional-table">
+                                <thead>
+                                    <tr class="bg-white border-b border-slate-200 text-xs uppercase tracking-wider text-slate-500 font-semibold">
+                                        <th class="px-5 py-3">Adicional</th>
+                                        <th class="px-5 py-3 text-right">Preço</th>
+                                        <th class="px-5 py-3 text-center">Estoque</th>
+                                        <th class="px-5 py-3 text-center">Status</th>
+                                        <th class="px-5 py-3 text-right">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100" id="additional-table-body"></tbody>
+                            </table>
+                        </div>
+
+                        <div class="hidden flex-col items-center justify-center p-10 text-center border-t border-slate-100" id="additional-empty">
+                            <p class="text-sm font-semibold text-slate-600">Nenhum adicional cadastrado.</p>
+                            <p class="text-xs text-slate-500 mt-1">Cadastre itens como milho, cheddar, salsicha extra e batata palha.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/audit-log.js"></script>
+    <script src="../assets/js/painel-vendas.js"></script>
+    <script src="../assets/js/pages/produtos.js"></script>
+</body>
+</html>

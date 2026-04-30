@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dogtop | Configurações 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/pages/configuracoes2.css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="settings2-page">
+    <aside class="settings2-sidebar">
+        <a href="./dashboard.html" class="settings2-brand">
+            <span>DT</span>
+            <strong>Dogtop</strong>
+        </a>
+        <nav>
+            <a href="./dashboard.html">Geral</a>
+            <a href="./pedidos.html">Pedidos</a>
+            <a href="./segunda-via.html">Recibo</a>
+            <a href="./vendas.html">Pedidos e Vendas</a>
+            <a href="./financas.html">Pagamentos</a>
+            <a href="./entregadores.html">Entrega e Retirada</a>
+            <a href="./configuracoes.html">Integrações</a>
+            <a href="./logs.html">Ajuda</a>
+            <a href="./configuracoes2.html" class="active">Configurações 2</a>
+        </nav>
+        <a href="./dashboard.html" class="settings2-bottom"><span>DT</span> Dogtop</a>
+    </aside>
+
+    <main class="settings2-main">
+        <header class="settings2-header">
+            <div>
+                <h1>configurações</h1>
+                <div class="settings2-tabs" aria-label="Seções de configuração">
+                    <button type="button" class="active">Geral</button>
+                    <button type="button">Pedidos e Vendas</button>
+                    <button type="button">Recibo</button>
+                    <button type="button">Pagamentos</button>
+                    <button type="button">Entrega e Retirada</button>
+                    <button type="button">Integrações</button>
+                </div>
+            </div>
+            <div class="settings2-user">
+                <span>Ajuda</span>
+                <strong>AM</strong>
+            </div>
+        </header>
+
+        <form id="settings-form" class="settings2-layout">
+            <section class="settings2-grid">
+                <div class="settings2-column">
+                    <article class="settings2-card">
+                        <h2>Dados da Loja</h2>
+                        <div class="settings2-fields">
+                            <label><span>Nome</span><input type="text" name="empresaNome" required /></label>
+                            <label><span>Recibo Nome</span><input type="text" name="empresaNomeRecibo" required /></label>
+                            <div class="settings2-two">
+                                <label><span>Responsável</span><input type="text" name="empresaResponsavel" /></label>
+                                <label><span>CPF/CNPJ</span><input type="text" name="empresaDocumento" /></label>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="settings2-card">
+                        <h2>Contato e Endereço</h2>
+                        <div class="settings2-two">
+                            <label><span>WhatsApp</span><input type="tel" name="empresaWhatsapp" required /></label>
+                            <label><span>Fixed Phone</span><input type="tel" name="empresaTelefone" /></label>
+                            <label><span>Email</span><input type="email" name="empresaEmail" required /></label>
+                            <label><span>Instagram @</span><input type="text" name="empresaInstagram" /></label>
+                        </div>
+                        <label><span>Complete Address</span><input type="text" name="empresaEndereco" required /></label>
+                        <label><span>Complemento</span><input type="text" name="empresaComplemento" /></label>
+                        <button type="button" id="settings-map-button" class="settings2-link">Verificar no Mapa</button>
+                    </article>
+
+                    <article class="settings2-card">
+                        <h2>Moeda e Valores</h2>
+                        <div class="settings2-two">
+                            <label>
+                                <span>Símbolo</span>
+                                <select name="moedaCodigo">
+                                    <option value="BRL">Real (R$)</option>
+                                    <option value="USD">Dólar ($)</option>
+                                </select>
+                            </label>
+                            <label>
+                                <span>Casas decimais</span>
+                                <select name="moedaCasasDecimais">
+                                    <option value="sim">2</option>
+                                    <option value="nao">0</option>
+                                </select>
+                            </label>
+                        </div>
+                    </article>
+
+                    <article class="settings2-card">
+                        <h2>Logotipo</h2>
+                        <div class="settings2-logo-row">
+                            <div id="settings-logo-preview" class="settings2-logo-box">Logotipo</div>
+                            <div>
+                                <input type="hidden" name="empresaLogotipo" />
+                                <button type="button" onclick="document.getElementById('settings-logo-file').click()">Arquive a imagem</button>
+                                <button type="button" id="settings-logo-clear">Remover imagem</button>
+                                <input type="file" id="settings-logo-file" accept="image/*" hidden />
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="settings2-column">
+                    <article class="settings2-card settings2-receipt">
+                        <h2>Cupom / Recibo Térmico</h2>
+                        <div class="settings2-receipt-content">
+                            <div class="settings2-checks">
+                                <label><input type="checkbox" name="reciboLogo" /> Logo</label>
+                                <label><input type="checkbox" name="reciboNomeLoja" /> Nome Loja</label>
+                                <label><input type="checkbox" name="reciboCnpj" /> CNPJ/CPF</label>
+                                <label><input type="checkbox" name="reciboTelefone" /> Telefone</label>
+                                <label><input type="checkbox" name="reciboWhatsapp" /> WhatsApp</label>
+                                <label><input type="checkbox" name="reciboEndereco" /> Endereço</label>
+                                <label class="hidden"><input type="checkbox" name="reciboClienteNome" /> Cliente</label>
+                                <label class="hidden"><input type="checkbox" name="reciboClienteTelefone" /> Telefone cliente</label>
+                                <label class="hidden"><input type="checkbox" name="reciboClienteEndereco" /> Endereço cliente</label>
+                            </div>
+                            <div class="settings2-receipt-icon">Meu Recibo</div>
+                        </div>
+                        <label><span>Mensagem de Cabeçalho</span><textarea name="reciboCabecalho" rows="3"></textarea></label>
+                        <label><span>Rodapé</span><textarea name="reciboRodape" rows="3"></textarea></label>
+                        <div class="settings2-receipt-footer">Meu Recibo</div>
+                    </article>
+
+                    <article class="settings2-card">
+                        <h2>Status dos Pedidos</h2>
+                        <div class="settings2-status-head">
+                            <span>Taxa Padrão</span>
+                            <input type="number" name="taxaEntrega" min="0" step="0.01" required />
+                        </div>
+                        <div class="settings2-checks">
+                            <label><input type="checkbox" name="statusPendente" /> Pendente</label>
+                            <label><input type="checkbox" name="statusConfirmado" /> Confirmado</label>
+                            <label><input type="checkbox" name="statusPago" /> Pago</label>
+                            <label><input type="checkbox" name="statusProducao" /> Em produção</label>
+                            <label><input type="checkbox" name="statusPronto" /> Pronto</label>
+                            <label><input type="checkbox" name="statusSaiuEntrega" /> Saiu entrega</label>
+                            <label><input type="checkbox" name="statusProntoRetirar" /> Pronto retirada</label>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="settings2-column">
+                    <article class="settings2-card">
+                        <h2>Formas de Pagamento</h2>
+                        <div class="settings2-payment-list">
+                            <label><input type="checkbox" name="pagamentoPix" /><strong>Pix</strong><small>Configure seu melhor Pix</small></label>
+                            <label><input type="checkbox" name="pagamentoDinheiro" /><strong>Dinheiro em Espécie</strong><small>Configure seu dinheiro em espécie</small></label>
+                            <label><input type="checkbox" name="pagamentoDebito" /><strong>Cartão de Débito</strong><small>Configure pedidos no cartão de débito</small></label>
+                            <label><input type="checkbox" name="pagamentoCredito" /><strong>Cartão de Crédito</strong><small>Configure pedidos no cartão de crédito</small></label>
+                        </div>
+                    </article>
+
+                    <article class="settings2-card">
+                        <h2>Integrações</h2>
+                        <div class="settings2-integrations">
+                            <span>Instagram</span>
+                            <span>Google Compras</span>
+                            <span>Pedidos de comida</span>
+                            <small>Sem aplicativo</small>
+                        </div>
+                    </article>
+
+                    <article class="settings2-card settings2-toggle-card">
+                        <div>
+                            <h2>Permitir vendas fiado</h2>
+                            <p>Desative caso você não trabalhe com fiado.</p>
+                        </div>
+                        <label class="settings2-switch">
+                            <input type="checkbox" name="permitirFiado" />
+                            <span></span>
+                        </label>
+                    </article>
+
+                    <article class="settings2-card">
+                        <h2>Entrega e Retirada</h2>
+                        <p>Seu endereço será informado durante o fechamento do pedido.</p>
+                        <button type="button" class="settings2-delivery">opção de entrega</button>
+                    </article>
+
+                    <article class="settings2-card">
+                        <h2>Backup do Sistema</h2>
+                        <div class="settings2-backup">
+                            <button type="button" id="settings-export-backup">Exportar</button>
+                            <button type="button" id="settings-import-backup">Importar Backup</button>
+                            <input type="file" id="settings-import-file" accept="application/json,.json" hidden />
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <aside class="settings2-summary">
+                <h2>Resumo Aplicado</h2>
+                <section>
+                    <h3>Configurações de Pagamento</h3>
+                    <div id="settings2-payment-summary"></div>
+                </section>
+                <section>
+                    <h3>Taxa de entrega</h3>
+                    <strong id="settings-preview-fee">R$ 0,00</strong>
+                </section>
+                <section>
+                    <h3>Loja</h3>
+                    <p id="settings-preview-name">-</p>
+                    <p id="settings-preview-address">-</p>
+                    <p id="settings-preview-contact">-</p>
+                </section>
+            </aside>
+
+            <footer class="settings2-actions">
+                <button type="button" id="settings-reset">Restaurar padrões</button>
+                <p id="settings-feedback" role="status"></p>
+                <button type="submit">Salvar Configurações</button>
+            </footer>
+        </form>
+    </main>
+
+    <script src="../assets/js/audit-log.js"></script>
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/pages/configuracoes2.js"></script>
+</body>
+</html>

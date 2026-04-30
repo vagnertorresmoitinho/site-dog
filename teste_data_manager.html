@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste de Conexão - DogTop Data Manager</title>
+  <style>
+    body { 
+      font-family: 'Segoe UI', monospace; 
+      padding: 20px; 
+      background: #1e1e1e; 
+      color: #ddd;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { color: #ff6b00; }
+    .test { 
+      padding: 10px; 
+      margin: 5px 0; 
+      border-radius: 4px;
+      background: #2d2d2d;
+    }
+    .success { color: #4caf50; }
+    .error { color: #f44336; }
+    .warning { color: #ff9800; }
+    .info { color: #2196f3; }
+    .loading { color: #ff9800; }
+    pre { 
+      background: #0d0d0d; 
+      padding: 10px; 
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>🐕 Teste de Conexão - DogTop Data Manager</h1>
+  <div id="output"></div>
+
+  <!-- Carregar config.js primeiro -->
+  <script src="assets/js/config.js"></script>
+  <!-- Carregar data-manager.js -->
+  <script src="assets/js/data-manager.js"></script>
+
+  <script>
+    const output = document.getElementById('output');
+    
+    function log(msg, className = '') {
+      const div = document.createElement('div');
+      div.className = 'test ' + className;
+      div.textContent = msg;
+      output.appendChild(div);
+    }
+
+    async function runTests() {
+      log('🧪 Iniciando testes de conexão...\n', 'info');
+      
+      // Aguardar inicialização
+      await new Promise(r => setTimeout(r, 500));
+      
+      log('📡 Modo atual: ' + (window.DogtopData?.mode || 'não inicializado'), 'info');
+      
+      // Teste 1: Produtos
+      log('\n📦 Teste 1: Listar produtos...', 'info');
+      try {
+        const produtos = await window.DogtopData.produtos.listar();
+        log('✅ Produtos: ' + produtos.length + ' registro(s)', 'success');
+        if (produtos.length > 0) {
+          log('   Primeiro produto: ' + produtos[0].nome + ' - R$ ' + produtos[0].preco_base, 'info');
+        }
+      } catch (e) {
+        log('❌ Erro: ' + e.message, 'error');
+      }
+
+      // Teste 2: Adicionais
+      log('\n🍟 Teste 2: Listar adicionais...', 'info');
+      try {
+        const adicionais = await window.DogtopData.adicionais.listar();
+        log('✅ Adicionais: ' + adicionais.length + ' registro(s)', 'success');
+      } catch (e) {
+        log('❌ Erro: ' + e.message, 'error');
+      }
+
+      // Teste 3: Clientes
+      log('\n👥 Teste 3: Listar clientes...', 'info');
+      try {
+        const clientes = await window.DogtopData.clientes.listar();
+        log('✅ Clientes: ' + clientes.length + ' registro(s)', 'success');
+      } catch (e) {
+        log('❌ Erro: ' + e.message, 'error');
+      }
+
+      // Teste 4: Pedidos
+      log('\n📋 Teste 4: Listar pedidos...', 'info');
+      try {
+        const pedidos = await window.DogtopData.pedidos.listar();
+        log('✅ Pedidos: ' + pedidos.length + ' registro(s)', 'success');
+      } catch (e) {
+        log('❌ Erro: ' + e.message, 'error');
+      }
+
+      // Teste 5: Configurações
+      log('\n⚙️ Teste 5: Buscar configurações...', 'info');
+      try {
+        const empresa = await window.DogtopData.configuracoes.getEmpresa();
+        log('✅ Empresa: ' + (empresa?.nome || 'não configurada'), 'success');
+        
+        const taxa = await window.DogtopData.configuracoes.getTaxaEntrega();
+        log('   Taxa entrega: R$ ' + taxa, 'info');
+        
+        const pagamentos = await window.DogtopData.configuracoes.getFormasPagamento();
+        log('   Pagamentos: ' + Object.keys(pagamentos).filter(k => pagamentos[k]).join(', '), 'info');
+      } catch (e) {
+        log('❌ Erro: ' + e.message, 'error');
+      }
+
+      // Teste 6: Áreas de Entrega
+      log('\n🗺️ Teste 6: Listar áreas de entrega...', 'info');
+      try {
+        const areas = await window.DogtopData.areasEntrega.listar();
+        log('✅ Áreas: ' + areas.length + ' registro(s)', 'success');
+        areas.forEach(a => {
+          log('   - ' + a.cidade + '/' + a.bairro + ': R$ ' + a.taxa_entrega, 'info');
+        });
+      } catch (e) {
+        log('❌ Erro: ' + e.message, 'error');
+      }
+
+      // Teste 7: Entregadores
+      log('\n🏍️ Teste 7: Listar entregadores...', 'info');
+      try {
+        const entregadores = await window.DogtopData.entregadores.listar();
+        log('✅ Entregadores: ' + entregadores.length + ' registro(s)', 'success');
+      } catch (e) {
+        log('❌ Erro: ' + e.message, 'error');
+      }
+
+      // Resumo final
+      log('\n' + '='.repeat(50), 'info');
+      const mode = window.DogtopData?.mode || 'offline';
+      if (mode === 'online') {
+        log('🎉 SISTEMA ONLINE - CONECTADO AO SUPABASE!', 'success');
+      } else {
+        log('⚠️ SISTEMA OFFLINE - USANDO FALLBACK LOCAL', 'warning');
+      }
+    }
+
+    // Executar testes após carregar scripts
+    setTimeout(runTests, 1000);
+  </script>
+</body>
+</html>

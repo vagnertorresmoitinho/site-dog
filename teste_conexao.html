@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste de Conexão Supabase</title>
+  <style>
+    body { font-family: monospace; padding: 20px; background: #1e1e1e; color: #ddd; }
+    .log { white-space: pre-wrap; }
+    .success { color: #4caf50; }
+    .error { color: #f44336; }
+    .warning { color: #ff9800; }
+    .info { color: #2196f3; }
+  </style>
+</head>
+<body>
+  <h1>🧪 Teste de Conexão Supabase</h1>
+  <div id="output" class="log"></div>
+
+  <script>
+    const SUPABASE_URL = 'https://anjuawcodnktbjsznpeb.supabase.co/rest/v1/';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFuanVhd2NvZG5rdGJqc3pucGViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc1MDQ0MjAsImV4cCI6MjA5MzA4MDQyMH0.b01CUj3x-anYK2sauANZVEe-dhxOhtbqPFRiUDYEQG8';
+
+    const output = document.getElementById('output');
+    
+    function log(msg, className) {
+      output.innerHTML += '<div class="' + className + '">' + msg + '</div>';
+    }
+
+    async function testarConexao() {
+      log('🧪 Testando conexão com Supabase...\n', 'info');
+      log('URL: ' + SUPABASE_URL);
+      log('Key: ' + SUPABASE_ANON_KEY.substring(0, 50) + '...\n');
+
+      try {
+        log('📡 Teste 1: Verificando acesso à API...', 'info');
+        const response = await fetch(SUPABASE_URL + '?apikey=' + SUPABASE_ANON_KEY, {
+          method: 'GET',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
+          }
+        });
+
+        log('Status: ' + response.status + ' ' + response.statusText);
+        
+        if (response.ok) {
+          log('✅ API acessível!\n', 'success');
+        } else {
+          log('⚠️ Resposta: ' + await response.text() + '\n', 'warning');
+        }
+
+        log('📡 Teste 2: Tentando acessar tabela "empresa"...', 'info');
+        const empresaResponse = await fetch(SUPABASE_URL + 'empresa?select=*&limit=1', {
+          method: 'GET',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        log('Status: ' + empresaResponse.status);
+        const empresaData = await empresaResponse.json();
+        
+        if (empresaResponse.ok) {
+          log('✅ Tabela "empresa" acessível!', 'success');
+          log('Dados: ' + JSON.stringify(empresaData, null, 2));
+        } else {
+          log('Erro: ' + JSON.stringify(empresaData), 'error');
+        }
+
+        const tabelas = ['produtos', 'clientes', 'pedidos', 'configuracoes'];
+        for (const tabela of tabelas) {
+          log('\n📡 Teste: Tabela "' + tabela + '"...', 'info');
+          const r = await fetch(SUPABASE_URL + tabela + '?select=*&limit=1', {
+            method: 'GET',
+            headers: {
+              'apikey': SUPABASE_ANON_KEY,
+              'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
+            }
+          });
+          const d = await r.json();
+          if (r.ok) {
+            log('✅ ' + tabela + ': ' + (Array.isArray(d) ? d.length + ' registros' : JSON.stringify(d).substring(0, 100)), 'success');
+          } else {
+            log('❌ ' + tabela + ': ' + (d.message || d.error || 'erro'), 'error');
+          }
+        }
+
+      } catch (error) {
+        log('❌ Erro: ' + error.message, 'error');
+      }
+    }
+
+    testarConexao();
+  </script>
+</body>
+</html>
