@@ -75,7 +75,7 @@ document.body.dataset.page = 'clientes';
   let selectedClientId = localStorage.getItem(CURRENT_CLIENT_KEY) || '';
 
   const loadClients = async () => {
-    const data = await window.DogtopData.getClientes();
+    const data = await window.DataManager.getClientes();
     clients = Array.isArray(data) ? data.map(normalizeClient) : [];
     if (!selectedClientId && clients.length > 0) {
       selectedClientId = clients[0].id;
@@ -197,7 +197,7 @@ document.body.dataset.page = 'clientes';
 
   const saveClient = async (client) => {
     try {
-      const savedClient = await window.DogtopData.saveCliente(client);
+      const savedClient = await window.DataManager.saveCliente(client);
       const index = clients.findIndex((item) => item.id === savedClient.id);
       if (index >= 0) clients[index] = savedClient;
       else clients.unshift(savedClient);
@@ -240,7 +240,7 @@ document.body.dataset.page = 'clientes';
     client.saldo = direction === 'add' ? client.saldo + value : client.saldo - value;
     client.atualizadoEm = new Date().toISOString();
     
-    await window.DogtopData.saveCliente(client);
+    await window.DataManager.saveCliente(client);
     render();
   };
 

@@ -211,7 +211,7 @@ document.body.dataset.page = 'pedidos';
   };
 
   const renderOrders = async () => {
-    orders = (await window.DogtopData.getPedidos()) || [];
+    orders = (await window.DataManager.getPedidos()) || [];
     syncDriverLoads();
     const list = getFilteredOrders();
     const active = orders.filter((order) => !['concluido', 'cancelado'].includes(normalizeStatus(order.status))).length;
@@ -286,7 +286,7 @@ document.body.dataset.page = 'pedidos';
       }
     }
     
-    await window.DogtopData.savePedido(order);
+    await window.DataManager.savePedido(order);
     syncDriverLoads();
     window.DogtopAudit?.log?.({
       modulo: 'Pedidos',
@@ -308,7 +308,7 @@ document.body.dataset.page = 'pedidos';
     order.entregadorNome = driver ? driver.nome : '';
     order.atualizadoEm = new Date().toISOString();
     
-    await window.DogtopData.savePedido(order);
+    await window.DataManager.savePedido(order);
     syncDriverLoads();
 
     window.DogtopAudit?.log?.({

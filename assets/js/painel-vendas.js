@@ -70,10 +70,10 @@
   });
 
   const loadUsers = async () => {
-    const data = await window.DogtopData.getUsuarios();
+    const data = await window.dataManager();
     if (!data || data.length === 0) {
       const admin = defaultAdminUser();
-      await window.DogtopData.saveUsuario(admin);
+      await window.DataManager.saveUsuario(admin);
       return [admin];
     }
     return data;
@@ -727,7 +727,7 @@
         senhaTemporaria: senha,
         criadoEm: new Date().toISOString()
       };
-      await window.DogtopData.saveUsuario(userToSave);
+      await window.DataManager.saveUsuario(userToSave);
 
       const card = document.createElement('div');
       card.className = 'user-record';
@@ -777,7 +777,7 @@
       return Number.isFinite(numberValue) && numberValue > 0 ? numberValue : 0;
     };
     
-    const products = await window.DogtopData.getProdutos() || [];
+    const products = await window.DataManager.getProdutos() || [];
 
     const promotionalProducts = products
       .map((product) => ({

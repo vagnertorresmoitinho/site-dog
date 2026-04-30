@@ -114,7 +114,7 @@ Criar um módulo central que gerencia a comunicação entre localStorage e Supab
 ```javascript
 // assets/js/data-manager.js
 (() => {
-  const STORAGE_KEY = 'dogtopDataMode'; // 'local' | 'remote' | 'hybrid'
+  const STORAGE_KEY = 'dataManagerMode'; // 'local' | 'remote' | 'hybrid'
   
   // Configuração de modo
   const DataManager = {
@@ -283,7 +283,7 @@ Criar um módulo central que gerencia a comunicação entre localStorage e Supab
     }
   };
   
-  window.DogtopData = DataManager;
+  window.DataManager = DataManager;
 })();
 ```
 
@@ -295,9 +295,9 @@ Criar um módulo central que gerencia a comunicação entre localStorage e Supab
 
 Cada página que usa localStorage precisa ser atualizada para:
 
-1. Importar `DogtopData` (ou usar window.DogtopData)
-2. Substituir `localStorage.getItem('dogtopX')` por `await DogtopData.getX()`
-3. Substituir `localStorage.setItem('dogtopX', ...)` por `await DogtopData.saveX(...)`
+1. Importar `DataManager` (ou usar window.DataManager)
+2. Substituir `localStorage.getItem('dogtopX')` por `await DataManager.getX()`
+3. Substituir `localStorage.setItem('dogtopX', ...)` por `await DataManager.saveX(...)`
 
 ### 3.2 Arquivos a atualizar
 
@@ -397,7 +397,7 @@ Adicionar indicador visual no painel:
 ```javascript
 // No header do painel
 const statusIndicator = () => {
-  const mode = window.DogtopData?.mode || 'unknown';
+  const mode = window.DataManager?.mode || 'unknown';
   const colors = { local: 'red', hybrid: 'orange', remote: 'green' };
   return `<span style="color: ${colors[mode] || 'gray'}">●</span> ${mode.toUpperCase()}`;
 };

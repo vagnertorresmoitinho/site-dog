@@ -58,12 +58,12 @@
       // Aguardar inicialização
       await new Promise(r => setTimeout(r, 500));
       
-      log('📡 Modo atual: ' + (window.DogtopData?.mode || 'não inicializado'), 'info');
+      log('📡 Modo atual: ' + (window.DataManager?.mode || 'não inicializado'), 'info');
       
       // Teste 1: Produtos
       log('\n📦 Teste 1: Listar produtos...', 'info');
       try {
-        const produtos = await window.DogtopData.produtos.listar();
+        const produtos = await window.DataManager.produtos.listar();
         log('✅ Produtos: ' + produtos.length + ' registro(s)', 'success');
         if (produtos.length > 0) {
           log('   Primeiro produto: ' + produtos[0].nome + ' - R$ ' + produtos[0].preco_base, 'info');
@@ -75,7 +75,7 @@
       // Teste 2: Adicionais
       log('\n🍟 Teste 2: Listar adicionais...', 'info');
       try {
-        const adicionais = await window.DogtopData.adicionais.listar();
+        const adicionais = await window.DataManager.adicionais.listar();
         log('✅ Adicionais: ' + adicionais.length + ' registro(s)', 'success');
       } catch (e) {
         log('❌ Erro: ' + e.message, 'error');
@@ -84,7 +84,7 @@
       // Teste 3: Clientes
       log('\n👥 Teste 3: Listar clientes...', 'info');
       try {
-        const clientes = await window.DogtopData.clientes.listar();
+        const clientes = await window.DataManager.clientes.listar();
         log('✅ Clientes: ' + clientes.length + ' registro(s)', 'success');
       } catch (e) {
         log('❌ Erro: ' + e.message, 'error');
@@ -93,7 +93,7 @@
       // Teste 4: Pedidos
       log('\n📋 Teste 4: Listar pedidos...', 'info');
       try {
-        const pedidos = await window.DogtopData.pedidos.listar();
+        const pedidos = await window.DataManager.pedidos.listar();
         log('✅ Pedidos: ' + pedidos.length + ' registro(s)', 'success');
       } catch (e) {
         log('❌ Erro: ' + e.message, 'error');
@@ -102,13 +102,13 @@
       // Teste 5: Configurações
       log('\n⚙️ Teste 5: Buscar configurações...', 'info');
       try {
-        const empresa = await window.DogtopData.configuracoes.getEmpresa();
+        const empresa = await window.DataManager.configuracoes.getEmpresa();
         log('✅ Empresa: ' + (empresa?.nome || 'não configurada'), 'success');
         
-        const taxa = await window.DogtopData.configuracoes.getTaxaEntrega();
+        const taxa = await window.DataManager.configuracoes.getTaxaEntrega();
         log('   Taxa entrega: R$ ' + taxa, 'info');
         
-        const pagamentos = await window.DogtopData.configuracoes.getFormasPagamento();
+        const pagamentos = await window.DataManager.configuracoes.getFormasPagamento();
         log('   Pagamentos: ' + Object.keys(pagamentos).filter(k => pagamentos[k]).join(', '), 'info');
       } catch (e) {
         log('❌ Erro: ' + e.message, 'error');
@@ -117,7 +117,7 @@
       // Teste 6: Áreas de Entrega
       log('\n🗺️ Teste 6: Listar áreas de entrega...', 'info');
       try {
-        const areas = await window.DogtopData.areasEntrega.listar();
+        const areas = await window.DataManager.areasEntrega.listar();
         log('✅ Áreas: ' + areas.length + ' registro(s)', 'success');
         areas.forEach(a => {
           log('   - ' + a.cidade + '/' + a.bairro + ': R$ ' + a.taxa_entrega, 'info');
@@ -129,7 +129,7 @@
       // Teste 7: Entregadores
       log('\n🏍️ Teste 7: Listar entregadores...', 'info');
       try {
-        const entregadores = await window.DogtopData.entregadores.listar();
+        const entregadores = await window.DataManager.entregadores.listar();
         log('✅ Entregadores: ' + entregadores.length + ' registro(s)', 'success');
       } catch (e) {
         log('❌ Erro: ' + e.message, 'error');
@@ -137,7 +137,7 @@
 
       // Resumo final
       log('\n' + '='.repeat(50), 'info');
-      const mode = window.DogtopData?.mode || 'offline';
+      const mode = window.DataManager?.mode || 'offline';
       if (mode === 'online') {
         log('🎉 SISTEMA ONLINE - CONECTADO AO SUPABASE!', 'success');
       } else {

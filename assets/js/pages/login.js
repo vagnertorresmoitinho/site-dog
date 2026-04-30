@@ -28,11 +28,11 @@ document.body.dataset.page = 'login';
   let users = [];
 
   const loadUsers = async () => {
-    const data = await window.DogtopData.getUsuarios();
+    const data = await window.dataManager;
     if (!data || data.length === 0) {
       const admin = defaultAdminUser();
       users = [admin];
-      await window.DogtopData.saveUsuario(admin);
+      await window.DataManager.saveUsuario(admin);
     } else {
       users = data;
     }
@@ -94,7 +94,7 @@ document.body.dataset.page = 'login';
     }
 
     user.ultimoLoginEm = new Date().toISOString();
-    await window.DogtopData.saveUsuario(user);
+    await window.dataManager.saveUsuario(user);
 
     localStorage.setItem(CURRENT_USER_KEY, JSON.stringify({
       id: user.id,

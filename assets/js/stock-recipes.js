@@ -137,7 +137,7 @@
     const amount = normalizeNumber(quantity);
     if (!normalizedIdentifier || amount <= 0) return { ok: false, reason: 'Insumo ou quantidade invalida.' };
 
-    const inputs = (await window.DogtopData?.getInsumos?.()) || ensureInputs();
+    const inputs = (await window.DataManager?.getInsumos?.()) || ensureInputs();
     const input = inputs.find((item) => {
       return normalizeKey(item.id) === normalizedIdentifier
         || normalizeKey(item.nome) === normalizedIdentifier;
@@ -151,8 +151,8 @@
       : Math.max(previousStock - amount, 0);
     input.atualizadoEm = new Date().toISOString();
     
-    await window.DogtopData?.saveInsumo?.(input);
-    await window.DogtopData?.saveMovimento?.({
+    await window.DataManager?.saveInsumo?.(input);
+    await window.DataManager?.saveMovimento?.({
       tipo: direction === 'in' ? 'entrada_manual' : 'saida_manual',
       insumoId: input.id,
       nome: input.nome,
@@ -177,8 +177,8 @@
       return { ok: true, skipped: true, reason: 'Baixa ja processada.' };
     }
 
-    const inputs = (await window.DogtopData?.getInsumos?.()) || ensureInputs();
-    const recipes = (await window.DogtopData?.getReceitas?.()) || ensureRecipes();
+    const inputs = (await window.DataManager?.getInsumos?.()) || ensureInputs();
+    const recipes = (await window.DataManager?.getReceitas?.()) || ensureRecipes();
     const usage = collectUsage(order, recipes);
     if (!usage.size) return { ok: false, reason: 'Pedido sem receita vinculada.' };
 
@@ -202,12 +202,12 @@
         minimo: normalizeNumber(input.minimo),
         critico: input.estoque <= normalizeNumber(input.minimo)
       });
-      updatePromises.push(window.DogtopData?.saveInsumo?.(input));
+      updatePromises.push(window.DataManager?.saveInsumo?.(input));
     });
 
     if (updatePromises.length) await Promise.all(updatePromises);
 
-    await window.DogtopData?.saveMovimento?.({
+    await window.DataManager?.saveMovimento?.({
       tipo: 'baixa_venda',
       pedidoId: order.id,
       itens: applied

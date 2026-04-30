@@ -108,7 +108,7 @@ document.body.dataset.page = 'entregadores';
     return 'recebido';
   };
   const syncDriversWithOrders = async () => {
-    const orders = (await window.DogtopData.getPedidos()) || [];
+    const orders = (await window.DataManager.getPedidos()) || [];
     const activeLoads = orders.reduce((acc, order) => {
       const status = normalizeOrderStatus(order.status);
       const isDelivery = normalizeKey(order.tipoEntrega) === 'delivery';
@@ -137,7 +137,7 @@ document.body.dataset.page = 'entregadores';
     });
 
     if (changed) {
-      await Promise.all(drivers.map(d => window.DogtopData.saveEntregador(d)));
+      await Promise.all(drivers.map(d => window.DataManager.saveEntregador(d)));
     }
   };
 
@@ -359,7 +359,7 @@ document.body.dataset.page = 'entregadores';
       criadoEm: new Date().toISOString()
     };
     
-    const savedDriver = await window.DogtopData.saveEntregador(driver);
+    const savedDriver = await window.DataManager.saveEntregador(driver);
     drivers.unshift(savedDriver);
     
     closeModal();
@@ -413,7 +413,7 @@ document.body.dataset.page = 'entregadores';
     }
 
     driver.atualizadoEm = new Date().toISOString();
-    await window.DogtopData.saveEntregador(driver);
+    await window.DataManager.saveEntregador(driver);
     renderDrivers();
   });
 

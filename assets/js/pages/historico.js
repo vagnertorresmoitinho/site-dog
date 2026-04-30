@@ -160,7 +160,7 @@ document.body.dataset.page = 'historico';
   };
 
   const loadOrders = async () => {
-    orders = (await window.DogtopData.getPedidos()) || [];
+    orders = (await window.DataManager.getPedidos()) || [];
     renderTable();
   };
 
@@ -208,7 +208,7 @@ document.body.dataset.page = 'historico';
     order.status = 'cancelado';
     order.canceladoEm = new Date().toISOString();
     
-    await window.DogtopData.savePedido(order);
+    await window.DataManager.savePedido(order);
     window.DogtopAudit?.log({
       modulo: 'Historico',
       acao: 'Pedido cancelado pelo historico',

@@ -34,25 +34,16 @@ document.body.dataset.page = 'usuarios';
   let users = [];
 
   const loadUsers = async () => {
-    const data = await window.DogtopData.getUsuarios();
-    if (!data || data.length === 0) {
-      users = [
-        {
-          id: 'admin-local-dogtop',
-          nome: 'Administrador Dogtop',
-          email: 'admin@dogtop.local',
-          perfil: 'Administrador',
-          setor: 'Gestao',
-          status: 'Ativo',
-          senhaTemporaria: 'admin123',
-          criadoEm: new Date().toISOString()
-        }
-      ];
-      await window.DogtopData.saveUsuario(users[0]);
-    } else {
-      users = data;
-    }
-  };
+  const data = await window.dataManager.getUsuarios();
+
+  if (!data || data.length === 0) {
+    const admin = defaultAdminUser();
+    users = [admin];
+    await window.dataManager.saveUsuario(admin);
+  } else {
+    users = data;
+  }
+};
 
   const setFeedback = (message, type = 'success') => {
     if (!feedback) return;
@@ -167,7 +158,7 @@ document.body.dataset.page = 'usuarios';
       return;
     }
 
-    const savedUser = await window.DogtopData.saveUsuario(user);
+    const savedUser = await window.dataManager.saveUsuario(user);
     users.unshift(savedUser);
     renderUsers();
     form.reset();
@@ -197,7 +188,7 @@ document.body.dataset.page = 'usuarios';
       }
       user.status = user.status === 'Bloqueado' ? 'Ativo' : 'Bloqueado';
       user.atualizadoEm = new Date().toISOString();
-      await window.DogtopData.saveUsuario(user);
+      await window.dataManager.saveUsuario(user);
       renderUsers();
       setFeedback(`Usuario ${user.status === 'Bloqueado' ? 'bloqueado' : 'desbloqueado'}.`, 'warning');
       return;

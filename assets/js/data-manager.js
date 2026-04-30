@@ -396,6 +396,6 @@
   };
   
   // Torna global para que todas as telas possam acessar
-  window.DogtopData = DataManager;
+  window.DataManager = DataManager;
   window.dataManager = dataManager;
 })();

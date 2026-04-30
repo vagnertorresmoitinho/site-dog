@@ -174,7 +174,7 @@ document.body.dataset.page = 'cozinha';
   };
 
   const render = async () => {
-    orders = (await window.DogtopData.getPedidos()) || [];
+    orders = (await window.DataManager.getPedidos()) || [];
     const activeOrders = getActiveOrders();
 
     board.innerHTML = kitchenColumns.map((column) => {
@@ -212,7 +212,7 @@ document.body.dataset.page = 'cozinha';
     order.status = nextNormalizedStatus;
     order.atualizadoEm = new Date().toISOString();
     
-    await window.DogtopData.savePedido(order);
+    await window.DataManager.savePedido(order);
     window.DogtopAudit?.log({
       modulo: 'Cozinha',
       acao: actionLabel,

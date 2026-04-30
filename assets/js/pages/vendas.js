@@ -131,13 +131,13 @@ document.body.dataset.page = 'vendas';
   const getAdditionalProducts = () => products.filter((product) => product.categoria === 'adicional');
 
   const loadProducts = async () => {
-    const data = await window.DogtopData.getProdutos();
+    const data = await window.DataManager.getProdutos();
     const source = data && data.length > 0 ? data : sampleProducts;
     products = source.map(normalizeProduct).filter((product) => product.status === 'disponivel' && product.preco > 0);
   };
 
   const loadClients = async () => {
-    const clients = await window.DogtopData.getClientes();
+    const clients = await window.DataManager.getClientes();
     clientList.innerHTML = (clients || []).map((client) => `
       <option value="${escapeHtml(client.nome || '')}" label="${escapeHtml(client.telefoneCelular || client.telefone || '')}"></option>
     `).join('');

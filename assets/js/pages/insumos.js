@@ -47,9 +47,9 @@ document.body.dataset.page = 'insumos';
 
   const loadData = async () => {
     const [dataInsumos, dataReceitas, dataProdutos] = await Promise.all([
-      window.DogtopData.getInsumos(),
-      window.DogtopData.getReceitas(),
-      window.DogtopData.getProdutos()
+      window.DataManager.getInsumos(),
+      window.DataManager.getReceitas(),
+      window.DataManager.getProdutos()
     ]);
     inputs = dataInsumos || [];
     recipes = dataReceitas || {};
@@ -57,11 +57,11 @@ document.body.dataset.page = 'insumos';
     
     if (!inputs.length && window.DogtopStock) {
       inputs = window.DogtopStock.ensureInputs?.() || [];
-      for (const i of inputs) await window.DogtopData.saveInsumo(i);
+      for (const i of inputs) await window.DataManager.saveInsumo(i);
     }
     if (Object.keys(recipes).length === 0 && window.DogtopStock) {
       recipes = window.DogtopStock.ensureRecipes?.() || {};
-      for (const [k, v] of Object.entries(recipes)) await window.DogtopData.saveReceita(k, v);
+      for (const [k, v] of Object.entries(recipes)) await window.DataManager.saveReceita(k, v);
     }
   };
 
@@ -251,8 +251,8 @@ document.body.dataset.page = 'insumos';
       : Math.max(previousStock - quantity, 0);
     input.atualizadoEm = new Date().toISOString();
     
-    await window.DogtopData.saveInsumo(input);
-    await window.DogtopData.saveMovimento({
+    await window.DataManager.saveInsumo(input);
+    await window.DataManager.saveMovimento({
       tipo: type === 'in' ? 'entrada_manual' : 'saida_manual',
       insumoId: input.id,
       nome: input.nome,
@@ -292,7 +292,7 @@ document.body.dataset.page = 'insumos';
       atualizadoEm: new Date().toISOString()
     };
 
-    const savedInput = await window.DogtopData.saveInsumo(input);
+    const savedInput = await window.DataManager.saveInsumo(input);
     if (existingIndex >= 0) inputs[existingIndex] = savedInput;
     else inputs.unshift(savedInput);
     
@@ -312,7 +312,7 @@ document.body.dataset.page = 'insumos';
     if (existing) existing.quantidade = quantity;
     else recipeItems.push({ insumoId: inputId, quantidade: quantity });
     recipes[productKey] = recipeItems;
-    await window.DogtopData.saveReceita(productKey, recipeItems);
+    await window.DataManager.saveReceita(productKey, recipeItems);
     recipeQuantity.value = '';
     renderRecipeTable();
   });
@@ -322,7 +322,7 @@ document.body.dataset.page = 'insumos';
     const index = Number(button.dataset.removeRecipeItem);
     if (!Number.isInteger(index)) return;
     recipes[recipeProduct.value] = (recipes[recipeProduct.value] || []).filter((_, itemIndex) => itemIndex !== index);
-    await window.DogtopData.saveReceita(recipeProduct.value, recipes[recipeProduct.value]);
+    await window.DataManager.saveReceita(recipeProduct.value, recipes[recipeProduct.value]);
     renderRecipeTable();
   });
 
@@ -331,7 +331,7 @@ document.body.dataset.page = 'insumos';
   searchInput?.addEventListener('input', renderTable);
   categoryFilter?.addEventListener('change', renderTable);
   window.addEventListener('dogtop:stock-updated', async () => {
-    inputs = await window.DogtopData.getInsumos();
+    inputs = await window.DataManager.getInsumos();
     renderTable();
   });
 

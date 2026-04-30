@@ -163,7 +163,7 @@ document.body.dataset.page = 'configuracoes';
   };
 
   const loadCurrentConfig = async () => {
-    const remoteConfig = await window.DogtopData.getConfig();
+    const remoteConfig = await window.DataManager.getConfig();
     const config = window.DogtopConfig.save(remoteConfig || {});
     fillForm(config);
     renderPreview(config);
@@ -230,7 +230,7 @@ document.body.dataset.page = 'configuracoes';
         // Sincronizar configuração recém-importada com a nuvem
         const importedConfig = JSON.parse(localStorage.getItem('dogtopConfiguracoes') || '{}');
         try {
-          await Promise.all(Object.entries(importedConfig).map(([chave, valor]) => window.DogtopData.saveConfig(chave, valor)));
+          await Promise.all(Object.entries(importedConfig).map(([chave, valor]) => window.DataManager.saveConfig(chave, valor)));
         } catch (e) {
           console.error('Falha ao sincronizar configuracoes apos backup', e);
         }
@@ -286,7 +286,7 @@ document.body.dataset.page = 'configuracoes';
     const config = window.DogtopConfig.save(nextConfig);
     
     try {
-      await Promise.all(Object.entries(config).map(([chave, valor]) => window.DogtopData.saveConfig(chave, valor)));
+      await Promise.all(Object.entries(config).map(([chave, valor]) => window.DataManager.saveConfig(chave, valor)));
     } catch (e) {
       console.error('Falha ao sincronizar configuracoes', e);
     }
@@ -314,7 +314,7 @@ document.body.dataset.page = 'configuracoes';
     const config = window.DogtopConfig.save(window.DogtopConfig.defaults);
     
     try {
-      await Promise.all(Object.entries(config).map(([chave, valor]) => window.DogtopData.saveConfig(chave, valor)));
+      await Promise.all(Object.entries(config).map(([chave, valor]) => window.DataManager.saveConfig(chave, valor)));
     } catch (e) {
       console.error('Falha ao restaurar configuracoes', e);
     }

@@ -62,7 +62,7 @@
     }
   };
   const loadClients = async () => {
-    const data = await window.DogtopData.getClientes();
+    const data = await window.DataManager.getClientes();
     return Array.isArray(data) ? data : [];
   };
   const normalizeClient = (client) => ({
@@ -320,7 +320,7 @@
       criadoEm: order.criadoEm
     });
 
-    await window.DogtopData.saveCliente(client);
+    await window.DataManager.saveCliente(client);
     return client;
   };
 
@@ -403,7 +403,7 @@
       }
     }
 
-    await window.DogtopData.savePedido(order);
+    await window.DataManager.savePedido(order);
     window.DogtopAudit?.log({
       modulo: 'Pedidos Online',
       acao: 'Pedido concluido',

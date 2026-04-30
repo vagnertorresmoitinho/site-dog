@@ -293,15 +293,15 @@ select 'Banco configurado com sucesso!' as resultado;</pre>
       
       await new Promise(r => setTimeout(r, 500));
       
-      const mode = window.DogtopData?.mode;
+      const mode = window.DataManager?.mode;
       
       if (mode === 'online') {
         result.innerHTML = '<p class="success">🎉 SUCESSO! Sistema conectado ao banco de dados!</p>';
         
         // Mostrar dados
-        const produtos = await window.DogtopData.produtos.listar();
-        const clientes = await window.DogtopData.clientes.listar();
-        const pedidos = await window.DogtopData.pedidos.listar();
+        const produtos = await window.DataManager.produtos.listar();
+        const clientes = await window.DataManager.clientes.listar();
+        const pedidos = await window.DataManager.pedidos.listar();
         
         result.innerHTML += `
           <div class="step">

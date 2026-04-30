@@ -451,7 +451,7 @@ document.body.dataset.page = 'produtos';
   let products = [];
 
   const loadProducts = async () => {
-    const data = await window.DogtopData.getProdutos();
+    const data = await window.DataManager.getProdutos();
     
     if (!data || data.length === 0) {
       products = sampleProducts.map(normalizeProduct);
@@ -695,7 +695,7 @@ document.body.dataset.page = 'produtos';
     const productData = readFormProduct();
     
     try {
-      const product = await window.DogtopData.saveProduto(productData);
+      const product = await window.DataManager.saveProduto(productData);
       const productIndex = products.findIndex((item) => item.id === product.id);
 
       if (productIndex >= 0) {
