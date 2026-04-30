@@ -397,4 +397,5 @@
   
   // Torna global para que todas as telas possam acessar
   window.DogtopData = DataManager;
+  window.dataManager = dataManager;
 })();

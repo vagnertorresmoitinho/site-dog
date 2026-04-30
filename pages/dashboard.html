@@ -6,11 +6,7 @@
     <title>Dogtop | Dashboard Moderno</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <script src="../assets/js/config.js"></script>
-    <script src="../assets/js/api.js"></script>
-    <script src="../assets/js/painel-vendas.js"></script>
-    <script>
+        <script>
         tailwind.config = {
             theme: {
                 extend: {
@@ -717,6 +713,17 @@
             }
         });
     </script>
+    <script src="../assets/js/config.js"></script>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/data-manager.js"></script>
+
+<script>
+    if (typeof dataManager !== "undefined" && !window.dataManager) {
+        window.dataManager = dataManager;
+    }
+</script>
+
+<script src="../assets/js/painel-vendas.js"></script>
 </body>
 </html>
 
